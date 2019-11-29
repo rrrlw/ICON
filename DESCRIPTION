@@ -11,6 +11,7 @@ Description: Provides easy-to-use and easy-to-access datasets from the
     of Colorado website. All datasets can be loaded with a single function
     call and new datasets are being slowly added from ICON at
     <https://icon.colorado.edu>.
+Depends: R (>= 2.10)
 License: CC0
 Encoding: UTF-8
 LazyData: true
