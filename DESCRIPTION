@@ -1,11 +1,17 @@
 Package: ICON
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Provides Easy Access to Complex Systems Datasets
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: as.person(c(
+    "Raoul Wadhwa <raoulwadhwa@gmail.com> [aut,cre]",
+    "Jacob Scott [aut]"
+  ))
+Description: Provides easy-to-use and easy-to-access datasets from the
+    Index of COmplex Networks (ICON) database available on the University
+    of Colorado website. All datasets can be loaded with a single function
+    call and new datasets are being slowly added from ICON.
+License: CC0
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/rrrlw/ICON
+BugReports: https://github.com/rrrlw/ICON/issues
