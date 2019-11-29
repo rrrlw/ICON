@@ -9,7 +9,8 @@ Authors@R: as.person(c(
 Description: Provides easy-to-use and easy-to-access datasets from the
     Index of COmplex Networks (ICON) database available on the University
     of Colorado website. All datasets can be loaded with a single function
-    call and new datasets are being slowly added from ICON.
+    call and new datasets are being slowly added from ICON at
+    <https://icon.colorado.edu>.
 License: CC0
 Encoding: UTF-8
 LazyData: true
