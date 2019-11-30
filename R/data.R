@@ -50,3 +50,27 @@
 #' }
 #' @source \url{https://www.nceas.ucsb.edu/interactionweb/html/snow_snow_1988.htm}
 "seed_disperse"
+
+#####yeast_ppi#####
+#' Yeast Interactome (2007)
+#'
+#' Undirected, unweighted network of protein-protein interactions in
+#' Saccharamyces cerevisiae (budding yeast), measured by co-complex
+#' associations identified by high-throughput affinity purification
+#' and mass spectrometry (AP/MS). Network is formatted as an edgelist.
+#'
+#' On the webpage at the source URL (below), select the "Combined-AP/MS"
+#' link to download the original, raw dataset.
+#'
+#' Citation:
+#' Collins SR, Kemmeren P, Zhao XC, et al. Toward a comprehensive atlas
+#' of the physical interactome of Saccharomyces cerevisiae. Mol Cell
+#' Proteomics. 2007; 6(3): 439-450.
+#'
+#' @format A data frame with 2 columns and 9070 rows:
+#' \describe{
+#'   \item{Protein1}{first protein in protein-protein interaction}
+#'   \item{Protein2}{second protein in protein-protein interaction}
+#' }
+#' @source \url{http://interactome.dfci.harvard.edu/S_cerevisiae/index.php?page=download}
+"yeast_ppi"
