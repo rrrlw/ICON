@@ -1,2 +1,6 @@
+# R/Rstudio files
 *\.Rproj
 .Rproj.user
+
+# planning files
+*\.txt
