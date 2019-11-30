@@ -3,7 +3,7 @@
 [![Travis-CI Build Status](https://travis-ci.org/rrrlw/ICON.svg?branch=master)](https://travis-ci.org/rrrlw/ICON)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rrrlw/ICON?branch=master&svg=true)](https://ci.appveyor.com/project/rrrlw/ICON)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 [![CRAN version](http://www.r-pkg.org/badges/version/ICON)](https://CRAN.R-project.org/package=ICON)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ICON)](https://CRAN.R-project.org/package=ICON)
 
