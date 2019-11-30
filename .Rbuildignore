@@ -7,3 +7,4 @@
 ^README\.md$
 .*\.txt$
 LICENSE
+^cran-comments\.md$
