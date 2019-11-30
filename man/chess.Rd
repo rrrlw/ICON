@@ -27,4 +27,8 @@ Edge sign is +1 for a win by white, 0 for draw, and -1 for a win by black.
 The dataset is anonymous: the identity of the players in unknown and
 timestamps are approximate.
 }
+\details{
+Citation:
+"Chess ratings- Elo versus the Rest of the World." Kaggle (2010).
+}
 \keyword{datasets}
