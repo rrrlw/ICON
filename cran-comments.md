@@ -1,3 +1,11 @@
+## Resubmission details
+This is a resubmission. We have fixed the DESCRIPTION file's
+Authors@R field, which previously did not use the person function,
+but does now. The 2 potential misspellings have been reviewed
+by us and are both correct spellings (unconventional capitalization
+given the abbreviation, but we follow the database authors'
+convention).
+
 ## Test environments
 * win-builder, r-devel
 * rhub Mac OS X, r-release
