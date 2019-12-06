@@ -2,10 +2,9 @@ Package: ICON
 Type: Package
 Title: Provides Easy Access to Complex Systems Datasets
 Version: 0.1.0
-Authors@R: as.person(c(
-    "Raoul Wadhwa <raoulwadhwa@gmail.com> [aut,cre]",
-    "Jacob Scott [aut]"
-  ))
+Authors@R: c(
+    person("Raoul", "Wadhwa", email = "raoulwadhwa@gmail.com", role = c("aut", "cre")),
+    person("Jacob", "Scott", role = "aut"))
 Description: Provides easy-to-use and easy-to-access datasets from the
     Index of COmplex Networks (ICON) database available on the University
     of Colorado website. All datasets can be loaded with a single function
@@ -13,6 +12,7 @@ Description: Provides easy-to-use and easy-to-access datasets from the
     <https://icon.colorado.edu>. Specific ICON datasets of interest can
     be requested at the BugReports URL <https://github.com/rrrlw/ICON/issues>.
 Depends: R (>= 2.10)
+Suggests: TDAstats (>= 0.4.0)
 License: CC0
 Encoding: UTF-8
 LazyData: true
