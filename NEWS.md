@@ -6,6 +6,7 @@ Added following datasets:
 * les_miserables
 * network_coauthors
 * power_grid
+* word_adj
 
 ## ICON v0.1.0
 
