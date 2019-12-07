@@ -102,3 +102,31 @@
 #' }
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "network_coauthors"
+
+#####les_miserables#####
+#' Les Miserables (1993)
+#'
+#' Undirected, weighted coappearance network of characters in the novel Les
+#' Miserables. Network is formatted as an edgelist. See the cited journal
+#' article below to understand how edge weight was calculated. Each node is
+#' also associated with character names - these have been omitted from the
+#' dataset loaded by this R pacakge. However, this information can be found
+#' in the raw dataset at this package's GitHub repo at
+#' <https://github.com/rrrlw/ICON> under the "data-raw" directory.
+#'
+#' On the webpage at the source URL (below), download the linked GML file
+#' under the "Social Networks" heading associated with the bullet point
+#' titled "Les Miserables".
+#'
+#' Citation:
+#' Knuth DE. The Stanford GraphBase: A Platform for Combinatorial Computing.
+#' Reading, MA: Addison-Wesley; 1993.
+#'
+#' @format A data frame with 3 columns and 254 rows:
+#' \describe{
+#'   \item{Node1}{one of the nodes defining the current edge}
+#'   \item{Node2}{other node defining the current edge}
+#'   \item{Weight}{edge weight}
+#' }
+#' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
+"les_miserables"
