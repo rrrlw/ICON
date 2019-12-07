@@ -145,8 +145,8 @@
 #' <https://github.com/rrrlw/ICON> under the "data-raw" directory.
 #'
 #' On the webpage at the source URL (below), download the linked GML file
-#' under the "Social Networks" heading associated with the bullet point
-#' titled "Les Miserables".
+#' under the "Web and Internet" heading associated with the bullet point
+#' titled "Internet".
 #'
 #' Citation:
 #' Newman M. Internet (2006). University of Oregon Route Views Project.
