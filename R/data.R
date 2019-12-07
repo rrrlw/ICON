@@ -159,3 +159,28 @@
 #' }
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "internet_routers"
+
+#####karate_club#####
+#' Zachary's Karate Club (1977)
+#'
+#' Undirected, unweighted social network of friendships between 34 members of
+#' a karate club at a U.S. univesity in the 1970s.
+#' Network is formatted as an edgelist. Node labels were not provided in the
+#' raw dataset, which can be found at this package's GitHub repo at
+#' <https://github.com/rrrlw/ICON> under the "data-raw" directory.
+#'
+#' On the webpage at the source URL (below), download the linked GML file
+#' under the "Social Networks" heading associated with the bullet point
+#' titled "Zachary's Karate Club".
+#'
+#' Citation:
+#' Zachary WW. An information flow model for conflict and fission in small
+#' groups. Journal of Anthropological Research. 1977; 33: 452-473.
+#'
+#' @format A data frame with 2 columns and 78 rows:
+#' \describe{
+#'   \item{Node1}{one of the nodes defining the current edge}
+#'   \item{Node2}{other node defining the current edge}
+#' }
+#' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
+"karate_club"
