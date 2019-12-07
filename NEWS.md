@@ -1,9 +1,10 @@
 ## ICON v0.2.0
 
 Added following datasets:
-* network_coauthors
-* les_miserables
 * internet_routers
+* karate_club
+* les_miserables
+* network_coauthors
 
 ## ICON v0.1.0
 
