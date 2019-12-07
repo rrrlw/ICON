@@ -3,6 +3,7 @@
 Added following datasets:
 * network_coauthors
 * les_miserables
+* internet_routers
 
 ## ICON v0.1.0
 
