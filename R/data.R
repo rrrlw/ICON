@@ -131,7 +131,7 @@
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "les_miserables"
 
-#####les_miserables#####
+#####internet_routers#####
 #' Internet Routers (1993)
 #'
 #' Undirected, unweighted network that is a symmetrized snapshot of the
