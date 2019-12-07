@@ -184,3 +184,28 @@
 #' }
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "karate_club"
+
+#####power_grid#####
+#' Power grid (1998)
+#'
+#' Undirected, unweighted network representing topology of the Western
+#' States Power Grid of the United States. Data compiled by D. Watts and
+#' S. Strogatz. Network is formatted as an edgelist. Node labels were not
+#' provided in the raw dataset, which can be found at this package's GitHub
+#' repo at <https://github.com/rrrlw/ICON> under the "data-raw" directory.
+#'
+#' On the webpage at the source URL (below), download the linked GML file
+#' under the "Infrastructure Networks" heading associated with the bullet point
+#' titled "Power grid".
+#'
+#' Citation:
+#' Watts DJ, Strogatz SH. Collective dynamics of 'small-world' networks.
+#' Nature. 1998; 393: 440-442.
+#'
+#' @format A data frame with 2 columns and 6594 rows:
+#' \describe{
+#'   \item{Node1}{one of the nodes defining the current edge}
+#'   \item{Node2}{other node defining the current edge}
+#' }
+#' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
+"power_grid"
