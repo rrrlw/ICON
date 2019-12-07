@@ -2,6 +2,7 @@
 
 Added following datasets:
 * network_coauthors
+* les_miserables
 
 ## ICON v0.1.0
 
