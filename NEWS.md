@@ -5,6 +5,7 @@ Added following datasets:
 * karate_club
 * les_miserables
 * network_coauthors
+* power_grid
 
 ## ICON v0.1.0
 
