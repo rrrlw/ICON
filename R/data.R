@@ -209,3 +209,28 @@
 #' }
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "power_grid"
+
+#####word_adj#####
+#' Word adjacencies (2006)
+#'
+#' Undirected, unweighted adjacency network of common adjectives and nouns
+#' in the novel David Copperfield by Charles Dickens.
+#' Network is formatted as an edgelist. Node labels (words) were
+#' provided in the raw dataset, which can be found at this package's GitHub
+#' repo at <https://github.com/rrrlw/ICON> under the "data-raw" directory.
+#'
+#' On the webpage at the source URL (below), download the linked GML file
+#' under the "Other Networks" heading associated with the bullet point
+#' titled "Word adjacencies".
+#'
+#' Citation:
+#' Newman MEJ. Finding community structure in networks using the eigenvectors
+#' of matrices. Phys Rev E. 2006; 74: 036104.
+#'
+#' @format A data frame with 2 columns and 425 rows:
+#' \describe{
+#'   \item{Node1}{one of the nodes defining the current edge}
+#'   \item{Node2}{other node defining the current edge}
+#' }
+#' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
+"word_adj"
