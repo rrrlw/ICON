@@ -32,5 +32,5 @@ Coming soon...
 
 ## Contribute
 
-See contribution guidelines [here](https://github.com/rrrlw/blob/master/CONTRIBUTING.md).
+See contribution guidelines [here](https://github.com/rrrlw/ICON/blob/master/CONTRIBUTING.md).
 First-timers and beginners are welcome!
