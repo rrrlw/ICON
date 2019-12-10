@@ -6,5 +6,7 @@
 ^NEWS\.md$
 ^README\.md$
 .*\.txt$
-LICENSE
+^LICENSE$
 ^cran-comments\.md$
+.*\.png
+^CONTRIBUTING\.md$
