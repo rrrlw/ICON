@@ -36,7 +36,8 @@ my_graph <- graph_from_edgelist(as.matrix(seed_disperse[, 1:2]), directed = FALS
 plot(my_graph, vertex.label = NA, vertex.size = 5)
 ```
 
-<img src="SamplePlot.png" align="left" />
+<img src="SamplePlot.png" align="left" width="350" height="350"/>
+
 
 ## Contribute
 
