@@ -33,7 +33,7 @@ data("yeast_ppi")
 # plot graph of protein-protein interactions using igraph
 library("igraph")
 my_graph <- graph_from_edgelist(as.matrix(yeast_ppi[, 1:2]), directed = FALSE)
-plot(my_graph, vertex.label = NA, vertex.size = 1)
+plot(my_graph, vertex.label = NA, vertex.size = 2.5)
 ```
 
 ## Contribute
