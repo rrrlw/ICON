@@ -16,19 +16,25 @@ All datasets can be loaded with a single function call and new datasets are bein
 
 To install the ICON package, run the following R code:
 ```r
-# install from CRAN (not yet)
+# install from CRAN (fewer networks)
 install.packages("ICON")
 
-# install development version from GitHub
+# install development version from GitHub (more networks)
 devtools::install_github("rrrlw/ICON")
-
-# install dev version with vignettes/tutorials
-devtools::install_github("rrrlw/ICON", build_vignettes = TRUE)
 ```
 
 ## Sample code
 
-Coming soon...
+```r
+# load dataset of yeast protein-protein interactions
+library("ICON")
+data("yeast_ppi")
+
+# plot graph of protein-protein interactions using igraph
+library("igraph")
+my_graph <- graph_from_edgelist(as.matrix(yeast_ppi[, 1:2]), directed = FALSE)
+plot(my_graph, vertex.label = NA, vertex.size = 1)
+```
 
 ## Contribute
 
