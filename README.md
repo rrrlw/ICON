@@ -26,14 +26,14 @@ devtools::install_github("rrrlw/ICON")
 ## Sample code
 
 ```r
-# load dataset of yeast protein-protein interactions
+# load network of bird and plant interactions
 library("ICON")
-data("yeast_ppi")
+data("seed_disperse")
 
-# plot graph of protein-protein interactions using igraph
+# plot interaction network using igraph
 library("igraph")
-my_graph <- graph_from_edgelist(as.matrix(yeast_ppi[, 1:2]), directed = FALSE)
-plot(my_graph, vertex.label = NA, vertex.size = 2.5)
+my_graph <- graph_from_edgelist(as.matrix(seed_disperse[, 1:2]), directed = FALSE)
+plot(my_graph, vertex.label = NA, vertex.size = 5)
 ```
 
 ## Contribute
