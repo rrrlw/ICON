@@ -234,3 +234,24 @@
 #' }
 #' @source \url{https://github.com/gephi/gephi/wiki/Datasets}
 "word_adj"
+
+#####terrorist_pairs#####
+#' Terrorist network (2002)
+#'
+#' Undirected, unweighted adjacency network of
+#' Network is formatted as an edgelist. Node labels (words) were
+#' provided in the raw dataset, which can be found at the ICON database.
+#'
+#' On the webpage at the source URL (below), download the linked folder
+#' under the "Terrorist associations" heading (4th in list).
+#'
+#' Citation:
+#' Krebs V. Mapping networks of terrorist cells. Connections. 2002; 24: 43-52.
+#'
+#' @format A data frame with 2 columns and 304 rows:
+#' \describe{
+#'   \item{Node1}{one of the nodes defining the current edge}
+#'   \item{Node2}{other node defining the current edge}
+#' }
+#' @source \url{http://tuvalu.santafe.edu/~aaronc/datacode.htm}
+"terrorist_pairs"
