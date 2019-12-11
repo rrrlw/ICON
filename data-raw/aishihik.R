@@ -1,7 +1,7 @@
 #####INTENSITY#####
 # columns = parasites; rows = freshwater fish
 temp_intensity <- read.table("data-raw/aishihik_intensity.txt",
-                             na.strings = "Nan")
+                             na.strings = c("Nan", "NaN"))
 
 # setup df
 num_rows <- sum(is.na(temp_intensity) | temp_intensity != 0)
@@ -32,7 +32,7 @@ usethis::use_data(aishihik_intensity, overwrite = TRUE)
 #####PREVALENCE#####
 # columns = parasites; rows = freshwater fish
 temp_prevalence <- read.table("data-raw/aishihik_prevalence.txt",
-                              na.strings = "Nan")
+                              na.strings = c("Nan", "NaN"))
 
 # setup df
 num_rows <- sum(is.na(temp_prevalence) | temp_prevalence != 0)
