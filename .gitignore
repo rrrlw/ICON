@@ -2,5 +2,5 @@
 *\.Rproj
 .Rproj.user
 
-# planning files
-*\.txt
+# planning file
+checklist.txt
