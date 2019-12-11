@@ -2,6 +2,7 @@
 
 Added following datasets:
 * aishihik_intensity, aishihik_prevalence
+* coldlake_intensity, coldlake_prevalence
 * internet_routers
 * karate_club
 * les_miserables
