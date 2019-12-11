@@ -5,6 +5,7 @@ Added following datasets:
 * coldlake_intensity, coldlake_prevalence
 * huron_prevalence
 * internet_routers
+* lakewoods_prevalence
 * karate_club
 * les_miserables
 * network_coauthors
