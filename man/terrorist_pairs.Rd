@@ -16,7 +16,7 @@
 terrorist_pairs
 }
 \description{
-Undirected, unweighted adjacency network of
+Undirected, unweighted adjacency network of terrorists.
 Network is formatted as an edgelist. Node labels (words) were
 provided in the raw dataset, which can be found at the ICON database.
 }
