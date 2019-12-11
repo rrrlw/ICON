@@ -439,3 +439,49 @@
 #' }
 #' @source \url{https://www.nceas.ucsb.edu/interactionweb/html/canadian_fish.html}
 "coldlake_prevalence"
+
+#####huron_prevalence#####
+#' Host-parasite web (1955-1983)
+#'
+#' Undirected, weighted, bipartite adjacency network of Canadian freshwater
+#' fish (hosts) and their metazoan parasites (parasites). The name of the
+#' lake to which this dataset corresponds is the first word of the dataset
+#' (text prior to the underscore).
+#' Network is formatted as an edgelist. Node labels (words) were
+#' provided in the raw dataset, which can be found at the source URL (below).
+#'
+#' On the webpage at the source URL (below), select the appropriate named link
+#' under the "Data files" heading.
+#'
+#' Citation:
+#' Arai HP, Mudry DR. Protozoan and metazoan parasites of fishes from the
+#' headwaters of the Parsip and McGregor Rivers, British Columbia: a study
+#' of possible parasite transfaunations. Canadian Journal of Fisheries and
+#' Aquatic Sciences. 1983; 40: 1676-1684.
+#'
+#' Arthur JR, Margolic L, Arai HP. Parasites of fishes of Aishihik and
+#' Stevens Lakes, Yukon Territory, and potential consequences of their
+#' interlake transfer through a proposed water diversion for hydroelectrical
+#' purposes. Journal of the Fisheries Research Board of Canada. 1976; 33:
+#' 2489-2499.
+#'
+#' Bangham RV. Studies on fish parasites of Lake Huron and Manitoulin Island.
+#' American Midland Naturalist. 1955; 53: 184-194.
+#'
+#' Chinniah VC, Threlfall W. Metazoan parasites of fish from the Smallwood
+#' Reservoir, Labrador, Canada. Journal of Fish Biology. 1978; 13: 203-213.
+#'
+#' Dechtiar AO. Parasites of fish from Lake of the Woods, Ontario. Journal of
+#' the Fisheries Research Board of Canada. 1972; 29: 275-283.
+#'
+#' Leong TS, Holmes JC. Communities of metazoan parasites in open water fishes
+#' of Cold Lake, Alberta. Journal of Fish Biology. 1981; 18: 693-713.
+#'
+#' @format A data frame with 3 columns and 316 rows:
+#' \describe{
+#'   \item{Fish}{Canadian freshwater fish host}
+#'   \item{Parasite}{Metazoan parasite}
+#'   \item{Prevalence}{Edge weight, see source URL and citations for definition}
+#' }
+#' @source \url{https://www.nceas.ucsb.edu/interactionweb/html/canadian_fish.html}
+"huron_prevalence"
