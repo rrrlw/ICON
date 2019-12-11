@@ -1,6 +1,7 @@
 ## ICON v0.2.0
 
 Added following datasets:
+* aishihik_intensity, aishihik_prevalence
 * internet_routers
 * karate_club
 * les_miserables
