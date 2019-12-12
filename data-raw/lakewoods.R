@@ -27,4 +27,5 @@ for (i in 1:nrow(temp_prevalence)) {
   }
 }
 
-usethis::use_data(lakewoods_prevalence, overwrite = TRUE)
+#usethis::use_data(lakewoods_prevalence, overwrite = TRUE)
+save(lakewoods_prevalence, file = "data-host/lakewoods_prevalence.rda")

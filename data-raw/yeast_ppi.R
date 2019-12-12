@@ -9,4 +9,5 @@ yeast_ppi <- read.table("data-raw/yeast_ppi.txt",
                         nrows = 9075)                              # padding
 
 # save as rda
-usethis::use_data(yeast_ppi, overwrite = TRUE)
+#usethis::use_data(yeast_ppi, overwrite = TRUE)
+save(yeast_ppi, file = "data-host/yeast_ppi.rda")

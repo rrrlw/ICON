@@ -1,5 +1,10 @@
 ## ICON v0.2.0
 
+Major change: none of the datasets are stored locally and loaded with the data function.
+Instead, all datasets are now stored on a GitHub repo and downloaded/loaded with the `get_data` function provided in the ICON package.
+Additionally, the ICON_data dataset can be used to find information on the datasets themselves.
+This change allows the package to provide datasets larger than the 5 MB limit posed by CRAN.
+
 Added following datasets:
 * aishihik_intensity, aishihik_prevalence
 * coldlake_intensity, coldlake_prevalence

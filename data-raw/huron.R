@@ -27,4 +27,5 @@ for (i in 1:nrow(temp_prevalence)) {
   }
 }
 
-usethis::use_data(huron_prevalence, overwrite = TRUE)
+#usethis::use_data(huron_prevalence, overwrite = TRUE)
+save(huron_prevalence, file = "data-host/huron_prevalence.rda")

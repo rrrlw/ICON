@@ -37,4 +37,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(internet_routers, overwrite = TRUE)
+#usethis::use_data(internet_routers, overwrite = TRUE)
+save(internet_routers, file = "data-host/internet_routers.rda")

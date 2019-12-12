@@ -40,4 +40,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(network_coauthors, overwrite = TRUE)
+#usethis::use_data(network_coauthors, overwrite = TRUE)
+save(network_coauthors, file = "data-host/network_coauthors.rda")

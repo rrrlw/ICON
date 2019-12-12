@@ -9,4 +9,5 @@ chess <- read.table(file = "data-raw/chess.txt",
                     stringsAsFactors = FALSE)                 # character IDs shouldn't be converted to factors
 
 # save in data folder
-usethis::use_data(chess, overwrite = TRUE)
+#usethis::use_data(chess, overwrite = TRUE)
+save(chess, file = "data-host/chess.rda")

@@ -40,4 +40,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(les_miserables, overwrite = TRUE)
+#usethis::use_data(les_miserables, overwrite = TRUE)
+save(les_miserables, file = "data-host/les_miserables.rda")

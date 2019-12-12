@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
+^data-host$
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^NEWS\.md$

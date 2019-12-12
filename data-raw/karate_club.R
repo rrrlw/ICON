@@ -37,4 +37,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(karate_club, overwrite = TRUE)
+#usethis::use_data(karate_club, overwrite = TRUE)
+save(karate_club, file = "data-host/karate_club.rda")

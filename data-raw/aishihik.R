@@ -27,7 +27,8 @@ for (i in 1:nrow(temp_intensity)) {
   }
 }
 
-usethis::use_data(aishihik_intensity, overwrite = TRUE)
+#usethis::use_data(aishihik_intensity, overwrite = TRUE)
+save(aishihik_intensity, file = "data-host/aishihik_intensity.rda")
 
 #####PREVALENCE#####
 # columns = parasites; rows = freshwater fish
@@ -58,4 +59,5 @@ for (i in 1:nrow(temp_prevalence)) {
   }
 }
 
-usethis::use_data(aishihik_prevalence, overwrite = TRUE)
+#usethis::use_data(aishihik_prevalence, overwrite = TRUE)
+save(aishihik_prevalence, file = "data-host/aishihik_prevalence.rda")

@@ -37,4 +37,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(word_adj, overwrite = TRUE)
+#usethis::use_data(word_adj, overwrite = TRUE)
+save(word_adj, file = "data-host/word_adj.rda")

@@ -37,4 +37,5 @@ while (TRUE) {
 close(fin)
 
 # save data as rda
-usethis::use_data(power_grid, overwrite = TRUE)
+#usethis::use_data(power_grid, overwrite = TRUE)
+save(power_grid, file = "data-host/power_grid.rda")
