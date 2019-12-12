@@ -7,6 +7,7 @@ This change allows the package to provide datasets larger than the 5 MB limit po
 
 Added following datasets:
 * aishihik_intensity, aishihik_prevalence
+* amazon_copurchase
 * coldlake_intensity, coldlake_prevalence
 * huron_prevalence
 * internet_routers
