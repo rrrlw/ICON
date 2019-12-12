@@ -5,9 +5,10 @@ Added following datasets:
 * coldlake_intensity, coldlake_prevalence
 * huron_prevalence
 * internet_routers
-* lakewoods_prevalence
 * karate_club
+* lakewoods_prevalence
 * les_miserables
+* mcgregor_intensity, mcgregor_prevalence
 * network_coauthors
 * power_grid
 * terrorist_pairs
