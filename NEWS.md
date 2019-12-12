@@ -10,6 +10,7 @@ Added following datasets:
 * les_miserables
 * mcgregor_intensity, mcgregor_prevalence
 * network_coauthors
+* parsnip_intensity, parsnip_prevalence
 * power_grid
 * terrorist_pairs
 * word_adj
