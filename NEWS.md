@@ -12,6 +12,7 @@ Added following datasets:
 * network_coauthors
 * parsnip_intensity, parsnip_prevalence
 * power_grid
+* smallwood_intensity, smallwood_prevalence
 * terrorist_pairs
 * word_adj
 
