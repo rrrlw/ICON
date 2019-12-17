@@ -1,5 +1,5 @@
 # read in data
-yeast_ppi <- read.table("data-raw/yeast_ppi.txt",
+ppi_yeast <- read.table("data-raw/ppi_yeast.txt",
                         header = FALSE,
                         col.names = c("Protein1", "Protein2"),
                         row.names = NULL,                          # save space/time
@@ -10,4 +10,4 @@ yeast_ppi <- read.table("data-raw/yeast_ppi.txt",
 
 # save as rda
 #usethis::use_data(yeast_ppi, overwrite = TRUE)
-save(yeast_ppi, file = "data-host/yeast_ppi.rda")
+save(ppi_yeast, file = "data-host/ppi_yeast.rda")

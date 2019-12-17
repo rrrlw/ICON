@@ -23,6 +23,9 @@ Added following datasets:
 * terrorist_pairs
 * word_adj
 
+Renamed the following datasets:
+* yeast_ppi -> ppi_yeast
+
 ## ICON v0.1.0
 
 Added initial set of networks from ICON:
