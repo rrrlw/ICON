@@ -20,6 +20,7 @@ Added following datasets:
 * parsnip_intensity, parsnip_prevalence
 * power_grid
 * ppi_cerevisiae
+* ppi_coli
 * ppi_sativa
 * smallwood_intensity, smallwood_prevalence
 * terrorist_pairs
