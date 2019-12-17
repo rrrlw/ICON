@@ -8,4 +8,5 @@ amazon_copurchase <- read.table("data-raw/amazon_copurchase.txt",
 
 # save as rda
 #usethis::use_data(amazon_copurchase, overwrite = TRUE)
-save(amazon_copurchase, file = "data-host/amazon_copurchase.rda")
+save(amazon_copurchase, file = "data-host/amazon_copurchase.rda",
+     compress = "xz")
