@@ -26,6 +26,7 @@ Added following datasets:
 * ppi_melanogaster
 * ppi_musculus
 * ppi_norvegicus
+* ppi_pombe
 * ppi_sativa
 * smallwood_intensity, smallwood_prevalence
 * terrorist_pairs
