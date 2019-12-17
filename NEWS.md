@@ -33,6 +33,7 @@ Added following datasets:
 * ppi_pombe
 * ppi_sativa
 * ppi_subtilis
+* ppi_taurus
 * smallwood_intensity
 * smallwood_prevalence
 * terrorist_pairs
