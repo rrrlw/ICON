@@ -21,6 +21,7 @@ Added following datasets:
 * power_grid
 * ppi_cerevisiae
 * ppi_coli
+* ppi_elegans
 * ppi_sativa
 * smallwood_intensity, smallwood_prevalence
 * terrorist_pairs
