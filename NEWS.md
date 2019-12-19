@@ -22,6 +22,7 @@ Added following datasets:
 * network_coauthors
 * parsnip_intensity
 * parsnip_prevalence
+* plant_pollinator_arroyo
 * power_grid
 * ppi_cerevisiae
 * ppi_coli
