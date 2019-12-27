@@ -22,5 +22,7 @@ for (i in 1:num_edges) {
   diseasome$Node2[i] <- curr_node2
 }
 
+close(con)
+
 # save as rda
-save(diseasome, "data-host/diseasome.Rda")
+save(diseasome, file = "data-host/diseasome.Rda")
