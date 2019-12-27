@@ -13,7 +13,7 @@ for (i in 1:num_edges) {
   curr <- readLines(con, n = 1)
 
   indices <- unlist(gregexpr(pattern = "\"", curr))
-  if (length(indices) < 4) stop("Problem with input data")
+  if (length(indices) != 4) stop("Problem with input data")
 
   curr_node1 <- substr(curr, indices[1] + 1, indices[2] - 1)
   curr_node2 <- substr(curr, indices[3] + 1, indices[4] - 1)
