@@ -12,6 +12,7 @@ Added following datasets:
 * AS_relation
 * coldlake_intensity
 * coldlake_prevalence
+* diseasome
 * huron_prevalence
 * internet_routers
 * karate_club
