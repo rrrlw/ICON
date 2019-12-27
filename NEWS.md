@@ -22,6 +22,7 @@ Added following datasets:
 * mcgregor_intensity
 * mcgregor_prevalence
 * network_coauthors
+* neural_elegans
 * parsnip_intensity
 * parsnip_prevalence
 * plant_pollinator_arroyo
