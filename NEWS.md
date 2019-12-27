@@ -13,6 +13,7 @@ Added following datasets:
 * coldlake_intensity
 * coldlake_prevalence
 * diseasome
+* diseasome_shared
 * huron_prevalence
 * internet_routers
 * karate_club
