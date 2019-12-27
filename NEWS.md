@@ -40,6 +40,7 @@ Added following datasets:
 * ppi_subtilis
 * ppi_taurus
 * ppi_thaliana
+* seed_disperse_beehler
 * smallwood_intensity
 * smallwood_prevalence
 * terrorist_pairs
