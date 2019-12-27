@@ -19,4 +19,4 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/rrrlw/ICON
 BugReports: https://github.com/rrrlw/ICON/issues
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
