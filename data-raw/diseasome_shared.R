@@ -31,4 +31,4 @@ for (i in 1:num_edges) {
 close(con)
 
 # save as rda
-save(diseasome_shared, file = "data-host/diseasome_shared.Rda")
+save(diseasome_shared, file = "data-host/diseasome_shared.rda")

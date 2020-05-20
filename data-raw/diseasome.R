@@ -25,4 +25,4 @@ for (i in 1:num_edges) {
 close(con)
 
 # save as rda
-save(diseasome, file = "data-host/diseasome.Rda")
+save(diseasome, file = "data-host/diseasome.rda")
