@@ -14,7 +14,6 @@
 #' @format A data frame with 10 columns and 22 rows:
 #' \describe{
 #'   \item{Var_name}{character; variable name to access dataset in R}
-#'   \item{Nodes}{integer; number of nodes in network}
 #'   \item{Edges}{integer; number of edges in network}
 #'   \item{Directed}{logical; 0 if undirected network, 1 if directed}
 #'   \item{Weighted}{logical; 0 if unweighted network, 1 if weighted}
