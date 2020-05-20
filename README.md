@@ -16,29 +16,42 @@ All datasets can be loaded with a single function call and new datasets are bein
 
 To install the ICON package, run the following R code:
 ```r
-# install from CRAN (fewer networks)
+# install from CRAN (older, fewer networks)
 install.packages("ICON")
 
-# install development version from GitHub (more networks)
+# install development version from GitHub (updated, more networks)
 devtools::install_github("rrrlw/ICON")
 ```
 
 ## Sample code
 
 ```r
-# load network of bird and plant interactions
+# load ICON package and data frame of available datasets
 library("ICON")
-data("seed_disperse")
+data(ICON_data)
+
+# vector of names of available datasets
+print(ICON_data$Var_name)
+
+# look at entire data frame in Rstudio
+View(ICON_data)
+
+# load the chess dataset for use and look at the first few lines
+get_data("chess")
+head(chess)
+
+# load another dataset for use
+get_data("seed_disperse_beehler")
 
 # plot interaction network using igraph
 library("igraph")
-my_graph <- graph_from_edgelist(as.matrix(seed_disperse[, 1:2]), directed = FALSE)
+my_graph <- graph_from_edgelist(as.matrix(seed_disperse_beehler[, 1:2]), directed = FALSE)
 plot(my_graph, vertex.label = NA, vertex.size = 5)
 
 # following plot is generated (exact vertex positioning varies each time code is run)
 ```
 
-<img src="SamplePlot.png" align="center" width="350" height="350"/><br/>
+<img src="SamplePlot.png" align="center" width="268" height="265"/><br/>
 
 ## Contribute
 
