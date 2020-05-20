@@ -36,7 +36,7 @@ get_data <- function(dataset_name, destdir = ".") {
   }
 
   # download, read, delete file(s)
-  TEMPLATE_URL <- "https://github.com/rrrlw/ICON/raw/master/data/DATASET_NAME.rda"
+  TEMPLATE_URL <- "https://github.com/rrrlw/ICON/raw/master/data-host/DATASET_NAME.rda"
   vapply(X = dataset_name,
          FUN.VALUE = logical(1),
          FUN = function(name) {
