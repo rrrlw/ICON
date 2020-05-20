@@ -42,4 +42,4 @@ seed_disperse_snow$Plant[seed_disperse$Plant == "Honeysuckle  perfoliate "] <- "
 
 # save in data folder
 #usethis::use_data(seed_disperse, overwrite = TRUE)
-save(seed_disperse_snow, file = "data-host/seed_disperse.rda")
+save(seed_disperse_snow, file = "data-host/seed_disperse_snow.rda")
