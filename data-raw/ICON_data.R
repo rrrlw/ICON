@@ -2,7 +2,7 @@
 ICON_data <- read.csv("data-raw/ICON_data.csv",
                       header = TRUE,
                       colClasses = c("character",     # var name
-                                     "integer",       # nodes
+                                     #"integer",       # nodes
                                      "integer",       # edges
                                      "integer",       # directed
                                      "integer",       # weighted

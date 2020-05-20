@@ -4,7 +4,8 @@
 \name{ICON_data}
 \alias{ICON_data}
 \title{Details about ICON datasets}
-\format{A data frame with 10 columns and 22 rows:
+\format{
+A data frame with 10 columns and 22 rows:
 \describe{
   \item{Var_name}{character; variable name to access dataset in R}
   \item{Nodes}{integer; number of nodes in network}
@@ -16,7 +17,8 @@
   \item{Source}{character; usually URL to access raw network data}
   \item{Description}{character; short description of network}
   \item{Citation}{character; how to cite network if used}
-}}
+}
+}
 \source{
 \url{https://icon.colorado.edu}
 }
