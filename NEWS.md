@@ -1,3 +1,7 @@
+## ICON v0.3.0
+
+Added following datasets:
+
 ## ICON v0.2.0
 
 Major change: none of the datasets are stored locally and loaded with the data function.
