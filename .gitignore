@@ -1,6 +1,7 @@
 # R/Rstudio files
 *\.Rproj
 .Rproj.user
+.Rhistory
 
 # planning files
 checklist.txt
