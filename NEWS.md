@@ -1,6 +1,10 @@
 ## ICON v0.3.0
 
 Added following datasets:
+* wordadj_english
+* wordadj_french
+* wordadj_spanish
+* wordadj_japanese
 
 ## ICON v0.2.0
 
