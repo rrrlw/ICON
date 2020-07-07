@@ -51,7 +51,7 @@ plot(my_graph, vertex.label = NA, vertex.size = 5)
 # following plot is generated (exact vertex positioning varies each time code is run)
 ```
 
-<img src="SamplePlot.png" align="center" width="268" height="265"/><br/>
+<img src="https://raw.githubusercontent.com/rrrlw/ICON/master/SamplePlot.png" align="center" width="268" height="265"/><br/>
 
 ## Contribute
 
