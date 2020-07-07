@@ -2,6 +2,7 @@
 
 Added following datasets:
 * wordadj_english
+* wordadj_french
 
 ## ICON v0.2.0
 
