@@ -1,6 +1,21 @@
 ## ICON v0.3.0
 
 Added following datasets:
+* fullerene_c60
+* fullerene_c180
+* fullerene_c240
+* fullerene_c260
+* fullerene_c320
+* fullerene_c500
+* fullerene_c540
+* fullerene_c720
+* fullerene_c960
+* fullerene_c1500
+* fullerene_c2160
+* fullerene_c2940
+* fullerene_c3840
+* fullerene_c4860
+* fullerene_c6000
 * wordadj_english
 * wordadj_french
 * wordadj_spanish
