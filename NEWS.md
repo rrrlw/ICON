@@ -1,6 +1,11 @@
 ## ICON v0.3.0
 
 Added following datasets:
+* arxiv_astroph
+* arxiv_condmat
+* arxiv_grqc
+* arxiv_hepph
+* arxiv_hepth
 * fullerene_c60
 * fullerene_c180
 * fullerene_c240
