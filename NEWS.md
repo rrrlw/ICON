@@ -16,6 +16,7 @@ Added following datasets:
 * fullerene_c3840
 * fullerene_c4860
 * fullerene_c6000
+* r_dep
 * wordadj_english
 * wordadj_french
 * wordadj_spanish
