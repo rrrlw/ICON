@@ -21,6 +21,7 @@ Added following datasets:
 * fullerene_c3840
 * fullerene_c4860
 * fullerene_c6000
+* movie_*, where the asterisk can be replaced by most integers between 1 and 914, inclusive
 * r_dep
 * wordadj_english
 * wordadj_french
