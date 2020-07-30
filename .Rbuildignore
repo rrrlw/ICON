@@ -11,3 +11,4 @@
 ^cran-comments\.md$
 .*\.png
 ^CONTRIBUTING\.md$
+^docs$
