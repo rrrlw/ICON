@@ -1,8 +1,8 @@
 ## Test environments
-* rhub Linux Ubuntu, r-devel
-* rhub Windows, r-release
-* Travis CI Linux Ubuntu, r-release
-* AppVeyor CI Windows, r-release
+* local OS X install, R 4.0.2
+* Ubuntu 16.04 (Travis CI), R 4.0.0
+* Windows Server 2012 R2 (AppVeyor CI), R 4.0.2
+* win-builder, r-devel
 
 ## R CMD check results
 There were no ERRORs, WARNINGs, or NOTEs.
