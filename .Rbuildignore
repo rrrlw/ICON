@@ -11,4 +11,5 @@
 ^cran-comments\.md$
 .*\.png
 ^CONTRIBUTING\.md$
+^CODE_OF_CONDUCT\.md$
 ^docs$
