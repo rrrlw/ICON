@@ -2,9 +2,16 @@ Package: ICON
 Type: Package
 Title: Provides Easy Access to Complex Systems Datasets
 Version: 0.4.0
-Authors@R: c(
-    person("Raoul", "Wadhwa", email = "raoulwadhwa@gmail.com", role = c("aut", "cre")),
-    person("Jacob", "Scott", role = "aut"))
+Authors@R:
+    c(person(given = "Raoul",
+             family = "Wadhwa",
+             role = c("aut", "cre"),
+             email = "raoulwadhwa@gmail.com",
+             comment = c(ORCID = "0000-0003-0503-9580")),
+      person(given = "Jacob",
+             family = "Scott",
+             role = "aut",
+             comment = c(ORCID = "0000-0003-2971-7673")))
 Description: Provides easy-to-use and easy-to-access datasets from the
     Index of COmplex Networks (ICON) database available on the University
     of Colorado website. All datasets can be loaded with a single function
@@ -16,6 +23,6 @@ Imports: utils (>= 3.6.1)
 License: CC0
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/rrrlw/ICON
+URL: https://rrrlw.github.io/ICON/
 BugReports: https://github.com/rrrlw/ICON/issues
 RoxygenNote: 7.1.0
