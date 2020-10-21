@@ -11,6 +11,7 @@
 
 The ICON R package provides easy-to-use and easy-to-access datasets from the Index of COmplex Networks (ICON) database available at the University of Colorado website.
 All datasets can be loaded with a single function call and new datasets are being slowly added from ICON at <https://icon.colorado.edu>.
+Currently, the ICON R package includes 1,075 complex networks.
 
 ## Installation
 
