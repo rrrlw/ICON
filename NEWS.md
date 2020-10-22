@@ -1,3 +1,8 @@
+## ICON v0.4.0
+
+Added following datasets:
+* procure_* (234 datasets for various EU countries and years)
+
 ## ICON v0.3.0
 
 Added following datasets:
