@@ -1,6 +1,7 @@
 ## ICON v0.4.0
 
-Added basic unit testing.
+* Implemented S3 generic: method = network::as.network; class = ICON
+* Added basic unit testing.
 
 Added following datasets:
 * procure_* (234 datasets for various EU countries and years)
