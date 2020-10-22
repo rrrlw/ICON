@@ -26,3 +26,5 @@ LazyData: true
 URL: https://rrrlw.github.io/ICON/
 BugReports: https://github.com/rrrlw/ICON/issues
 RoxygenNote: 7.1.0
+Suggests: 
+    testthat

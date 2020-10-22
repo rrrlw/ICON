@@ -45,7 +45,7 @@ get_data <- function(dataset_name, destdir = ".") {
                             x = TEMPLATE_URL,
                             fixed = TRUE)
 
-           file_name <- paste(destdir, "/", name, ".rda", sep = "")
+           file_name <- file.path(destdir, paste(name, ".rda", sep = ""))
            utils::download.file(curr_url,
                                 destfile = file_name,
                                 quiet = TRUE)
