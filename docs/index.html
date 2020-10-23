@@ -51,6 +51,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/intro.html">Introduction to ICON</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="news/index.html">Changelog</a>
 </li>
@@ -98,6 +110,7 @@
 <div id="sample-code" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sample-code" class="anchor"></a>Sample code</h2>
+<p>The sample code below demonstrates network visualization using the igraph R package. For a more detailed look at network analysis (using the network R package) and visualization (using the ggnetwork R package), please take a look at the package vignette.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co"># load ICON package and data frame of available datasets</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rrrlw.github.io/ICON/">"ICON"</a></span><span class="op">)</span>
@@ -117,8 +130,8 @@
 <span class="fu"><a href="reference/get_data.html">get_data</a></span><span class="op">(</span><span class="st">"seed_disperse_beehler"</span><span class="op">)</span>
 
 <span class="co"># plot interaction network using igraph</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"igraph"</span><span class="op">)</span>
-<span class="va">my_graph</span> <span class="op">&lt;-</span> <span class="fu">graph_from_edgelist</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">seed_disperse_beehler</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://igraph.org">"igraph"</a></span><span class="op">)</span>
+<span class="va">my_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">seed_disperse_beehler</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_graph</span>, vertex.label <span class="op">=</span> <span class="cn">NA</span>, vertex.size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
 <span class="co"># following plot is generated (exact vertex positioning varies each time code is run)</span></pre></div>
