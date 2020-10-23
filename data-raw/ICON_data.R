@@ -7,6 +7,7 @@ ICON_data <- read.csv("data-raw/ICON_data.csv",
                                      "integer",       # directed
                                      "integer",       # weighted
                                      "character",     # name
+                                     "character",     # domain
                                      "character",     # year (ranges too)
                                      "character",     # source
                                      "character",     # description

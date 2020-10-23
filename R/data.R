@@ -18,6 +18,7 @@
 #'   \item{Directed}{logical; 0 if undirected network, 1 if directed}
 #'   \item{Weighted}{logical; 0 if unweighted network, 1 if weighted}
 #'   \item{Name}{character; network title}
+#'   \item{Domain}{character; network knowledge domain/discipline}
 #'   \item{Year}{integer; year network was published/released}
 #'   \item{Source}{character; usually URL to access raw network data}
 #'   \item{Description}{character; short description of network}
