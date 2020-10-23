@@ -29,4 +29,7 @@ URL: https://rrrlw.github.io/ICON/
 BugReports: https://github.com/rrrlw/ICON/issues
 RoxygenNote: 7.1.1
 Suggests:
-    testthat (>= 2.3)
+    testthat (>= 2.3),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,156 @@
+---
+title: "Introduction to ICON"
+author: "Raoul R. Wadhwa and Jacob G. Scott"
+date: "22 October 2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to ICON}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Setup
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+To prepare for the vignette, we load the necessary R packages and associated datasets.
+
+```{r setup, message=FALSE}
+# load R packages (both on CRAN)
+library(ICON)
+library(network)   # for network analysis
+library(ggplot2)   # for network visualization
+library(ggnetwork) # for network visualization
+
+# load ICON dataset
+data(ICON_data)
+```
+
+## Purpose
+
+The ICON R package provides complex networks in edge list format that can be easily incorporated into network analysis pipelines.
+The package is based on the [Index of COmplex Networks (ICON) website](https://icon.colorado.edu) that curates complex networks and corresponding summary information (e.g. source, number of nodes \& edges, discipline).
+Many publications cite the ICON website, however, since the complex networks in the database exist in distinct formats, the authors of each publication likely had to standardize a large set of networks.
+The ICON R package aims to decrease redundant scut work (data formatting) by providing a large number of complex networks from the ICON website in a standard format (network format = edge list; file format = binary R Data with extension .rda).
+Currently, the ICON R package provides `r nrow(ICON_data)` complex networks.
+As can be reasonably inferred by reading this paragraph, referring to the package as "the ICON R package" can become quite tedious with multiple mentions; as such, the R package will be referred to simply as "ICON" for the remainder of this vignette and the website will be referred to as "the ICON website".
+
+## Which datasets are included in ICON?
+
+The `ICON_data` dataset (loaded in the Setup section) provides a summary of all the datasets that are available through ICON.
+Using `head`, we can take a look at the first 6.
+
+```{r peek}
+head(ICON_data)
+```
+
+Clearly, this is not aesthetic due to the number of columns that `ICON_data` contains.
+However, it should provide some comfort that the amount of metadata available within `ICON_data` will likely enable tracking down the original dataset.
+To get a nicer view of the available datasets, let's take a look at only a subset of the available metadata.
+
+```{r small_peek}
+head(ICON_data[, c("Var_name",
+                   "Edges",
+                   "Directed",
+                   "Name")],
+     n = 5)
+```
+
+A key difference to note is that the `Var_name` column refers to the dataset name that should be used when accessing it through ICON whereas the `Name` column lists a more descriptive dataset name with little programmatic relevance.
+Two salient points should be made here.
+First, descriptions of the information contained in each column of `ICON_data` can be accessed in the package documentation via `?ICON_data` or equivalents.
+Second, package metadata is generally available in R data packages via package documentation, which avoids the need for a dataset like `ICON_data`.
+However, since the networks that ICON provides can be quite large, even in a compressed binary format, they are not hosted within the package on the [Comprehensive R Archive Network (CRAN)](https://CRAN.R-project.org/).
+Instead, the desired packages are only downloaded locally when the user instructs ICON to do so via the `get_data` function (explored in the next section).
+Although this comes with the disadvantage of not having all datasets immediately available upon installation of ICON, it does save ICON users considerable space if they only wish to use a small subset of the available datasets.
+
+## How to load a specific dataset in ICON?
+
+Once the list of available datasets has been explored, the complex networks can be downloaded using the `get_data` function and the `Var_name` column in `ICON_data`.
+For example, the first network in `ICON_data` has `Var_name` set to `aishihik_intensity`, so we download it and peek as follows.
+
+```{r aishihik, cache=TRUE}
+get_data("aishihik_intensity")
+
+head(aishihik_intensity)
+```
+
+Every complex network in ICON is provided as an edgelist stored in a data frame.
+Each row of the data frame corresponds to a single edge and the first two columns contain the nodes that define the edge; for directed networks, the first column will always be the source (from) and the second column will always be the sink (to).
+Note that since only an edgelist is provided, nodes of degree zero will not be included.
+Weighted (and some unweighted) networks will contain more than two columns; the additional columns represent either edge weights or other edge attributes.
+The `get_data` function can also download multiple datasets at once.
+Note that the `get_data`'s `envir` parameter can be modified to select a different environment; by default, the objects will load on the global environment (`.GlobalEnv`).
+
+```{r dl_mult, cache=TRUE}
+get_data(c("coldlake_intensity", "fullerene_c60"))
+
+head(coldlake_intensity)
+
+head(fullerene_c60)
+```
+
+`get_data` also lends itself to a simple solution (following code chunk) to download all the networks available through ICON, however, this should be used with caution as there are a large number of them.
+The following chunk is not actually run in the vignette.
+
+```{r dl_all, eval=FALSE}
+# download all available complex networks
+get_data(ICON_data$Var_name)
+```
+
+Once downloaded, the complex networks can be stored locally in a binary (e.g. RDA/RData, RDS) or plain-text (CSV, TXT) format; storing it locally removes the reliance on an internet connection for future use.
+
+## How to analyze or visualize networks acquired through ICON?
+
+Although ICON provides the complex networks, it does not provide functionality to analyze or visualize them.
+However, the S3 generic `as.network.ICON` is provided to permit use of the network and ggnetwork R packages for analysis and visualization, respectively.
+The following code shows how to generate an object of class `network` using a previously downloaded complex network.
+
+```{r network_obj}
+# make sure that the downloaded network has class `ICON`
+class(aishihik_intensity)
+
+# coerce to class `network` (`as.network.ICON` is called)
+coerced_network <- as.network(aishihik_intensity)
+
+# check if the coerced network has the correct class
+class(coerced_network)
+
+# peek at the coerced network (pay attention to number of edges)
+coerced_network
+
+# check number of vertices in initial ICON object
+length(unique(c(aishihik_intensity[, 1], aishihik_intensity[, 2])))
+
+# check number of edges in initial ICON object
+nrow(aishihik_intensity)
+```
+
+The initial network (named `aishihik_intensity`) and the coerced network (named `coerced_network`) both contain `r get.network.attribute(coerced_network, "n")` vertices and `r nrow(aishihik_intensity)` edges.
+Once we have an object of class `network`, we can visualize it easily using ggnetwork (a ggplot2 extension).
+
+```{r network_viz, fig.width = 4}
+# ggnetwork fortifies objects of class `network` without additional code
+# the aes parameters should be used as-is
+ggplot(coerced_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges() +
+  geom_nodes() +
+  theme_blank()
+```
+
+`coerced_network` also has an edge attribute named `Intensity` (see the name of the third column name in `aishihik_intensity`).
+This edge attribute can be used to color the edges as follows.
+
+```{r col_edges, fig.width = 5}
+ggplot(coerced_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges(aes(color = Intensity)) + # this line changed
+  geom_nodes() +
+  theme_blank()
+```
+
+Implementing an S3 generic for the `as.network` method and `ICON` class thus makes ICON datasets compatible with the network and ggnetwork packages, considerably simplifying the processes for network analysis and visualization.
