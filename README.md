@@ -2,6 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/rrrlw/ICON.svg?branch=master)](https://travis-ci.org/rrrlw/ICON)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/rrrlw/ICON?branch=master&svg=true)](https://ci.appveyor.com/project/rrrlw/ICON)
+[![Codecov test coverage](https://codecov.io/gh/rrrlw/ICON/branch/master/graph/badge.svg)](https://codecov.io/gh/rrrlw/ICON?branch=master)
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-blue.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
 [![CRAN version](http://www.r-pkg.org/badges/version/ICON)](https://CRAN.R-project.org/package=ICON)
