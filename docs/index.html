@@ -36,7 +36,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ICON</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
 
@@ -50,6 +50,18 @@
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/intro.html">Introduction to ICON</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">Changelog</a>
@@ -82,42 +94,45 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>The ICON R package provides easy-to-use and easy-to-access datasets from the Index of COmplex Networks (ICON) database available at the University of Colorado website. All datasets can be loaded with a single function call and new datasets are being slowly added from ICON at <a href="https://icon.colorado.edu" class="uri">https://icon.colorado.edu</a>.</p>
+<p>The ICON R package provides easy-to-use and easy-to-access datasets from the Index of COmplex Networks (ICON) database available at the University of Colorado website. All datasets can be loaded with a single function call and new datasets are being slowly added from ICON at <a href="https://icon.colorado.edu" class="uri">https://icon.colorado.edu</a>. Currently, the ICON R package includes 1,075 complex networks.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>To install the ICON package, run the following R code:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install from CRAN (older, fewer networks)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"ICON"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install from CRAN (older, fewer networks)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"ICON"</span><span class="op">)</span>
 
 <span class="co"># install development version from GitHub (updated, more networks)</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"rrrlw/ICON"</span>)</pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rrrlw/ICON"</span><span class="op">)</span></pre></div>
 </div>
 <div id="sample-code" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sample-code" class="anchor"></a>Sample code</h2>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># load ICON package and data frame of available datasets</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"ICON"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">ICON_data</span>)
+<p>The sample code below demonstrates network visualization using the igraph R package. For a more detailed look at network analysis (using the network R package) and visualization (using the ggnetwork R package), please take a look at the package vignette.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># load ICON package and data frame of available datasets</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://rrrlw.github.io/ICON/">"ICON"</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">ICON_data</span><span class="op">)</span>
 
 <span class="co"># vector of names of available datasets</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">ICON_data</span>$<span class="no">Var_name</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">ICON_data</span><span class="op">$</span><span class="va">Var_name</span><span class="op">)</span>
 
 <span class="co"># look at entire data frame in Rstudio</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span>(<span class="no">ICON_data</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/View.html">View</a></span><span class="op">(</span><span class="va">ICON_data</span><span class="op">)</span>
 
 <span class="co"># load the chess dataset for use and look at the first few lines</span>
-<span class="fu"><a href="reference/get_data.html">get_data</a></span>(<span class="st">"chess"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">chess</span>)
+<span class="fu"><a href="reference/get_data.html">get_data</a></span><span class="op">(</span><span class="st">"chess"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">chess</span><span class="op">)</span>
 
 <span class="co"># load another dataset for use</span>
-<span class="fu"><a href="reference/get_data.html">get_data</a></span>(<span class="st">"seed_disperse_beehler"</span>)
+<span class="fu"><a href="reference/get_data.html">get_data</a></span><span class="op">(</span><span class="st">"seed_disperse_beehler"</span><span class="op">)</span>
 
 <span class="co"># plot interaction network using igraph</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"igraph"</span>)
-<span class="no">my_graph</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">seed_disperse_beehler</span>[, <span class="fl">1</span>:<span class="fl">2</span>]), <span class="kw">directed</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">my_graph</span>, <span class="kw">vertex.label</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">vertex.size</span> <span class="kw">=</span> <span class="fl">5</span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://igraph.org">"igraph"</a></span><span class="op">)</span>
+<span class="va">my_graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_edgelist.html">graph_from_edgelist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">seed_disperse_beehler</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">my_graph</span>, vertex.label <span class="op">=</span> <span class="cn">NA</span>, vertex.size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
 <span class="co"># following plot is generated (exact vertex positioning varies each time code is run)</span></pre></div>
 <p><img src="https://raw.githubusercontent.com/rrrlw/ICON/master/SamplePlot.png" align="center" width="268" height="265"><br></p>
@@ -152,13 +167,14 @@
 <h2>Community</h2>
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
 </ul>
 </div>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Raoul Wadhwa <br><small class="roles"> Author, maintainer </small>  </li>
-<li>Jacob Scott <br><small class="roles"> Author </small>  </li>
+<li>Raoul Wadhwa <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0003-0503-9580" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jacob Scott <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2971-7673" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -178,7 +194,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

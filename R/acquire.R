@@ -6,6 +6,7 @@
 #'
 #' @param dataset_name dataset variable name (corresponds to var_name in ICON_data)
 #' @param destdir location to temporarily download binary file
+#' @param envir environment to which data should be loaded
 #'
 #' @importFrom utils download.file
 #' @export
@@ -20,7 +21,8 @@
 #' # fail to load dataset not in the ICON R package
 #' get_data("not_a_dataset")
 #' }
-get_data <- function(dataset_name, destdir = ".") {
+get_data <- function(dataset_name, destdir = ".",
+                     envir = parent.frame()) {
   # confirm dataset_name is a dataset made available in ICON
   if (class(dataset_name) != "character") {
     stop("dataset_name parameter must be of class character")
@@ -40,6 +42,7 @@ get_data <- function(dataset_name, destdir = ".") {
   vapply(X = dataset_name,
          FUN.VALUE = logical(1),
          FUN = function(name) {
+           # download file
            curr_url <- gsub(pattern = "DATASET_NAME",
                             replacement = name,
                             x = TEMPLATE_URL,
@@ -50,8 +53,15 @@ get_data <- function(dataset_name, destdir = ".") {
                                 destfile = file_name,
                                 quiet = TRUE)
 
-           base::load(file_name, envir = .GlobalEnv)
+           # load it into global environment
+           base::load(file_name, envir = envir)
+           
+           # add "ICON" class to loaded data frame
+           assign(name,
+                  do.call("as.ICON", list(as.name(name))),
+                  envir = envir)
 
+           # delete downloaded file to keep side effects minimal
            base::file.remove(file_name)
          }
         ) -> tmp

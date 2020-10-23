@@ -4,12 +4,14 @@
 \alias{get_data}
 \title{Download and Load Complex Network Datasets}
 \usage{
-get_data(dataset_name, destdir = ".")
+get_data(dataset_name, destdir = ".", envir = parent.frame())
 }
 \arguments{
 \item{dataset_name}{dataset variable name (corresponds to var_name in ICON_data)}
 
 \item{destdir}{location to temporarily download binary file}
+
+\item{envir}{environment to which data should be loaded}
 }
 \description{
 Downloads the binary complex network dataset (rda format), then loads

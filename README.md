@@ -11,6 +11,7 @@
 
 The ICON R package provides easy-to-use and easy-to-access datasets from the Index of COmplex Networks (ICON) database available at the University of Colorado website.
 All datasets can be loaded with a single function call and new datasets are being slowly added from ICON at <https://icon.colorado.edu>.
+Currently, the ICON R package includes 1,075 complex networks.
 
 ## Installation
 
@@ -24,6 +25,9 @@ devtools::install_github("rrrlw/ICON")
 ```
 
 ## Sample code
+
+The sample code below demonstrates network visualization using the igraph R package.
+For a more detailed look at network analysis (using the network R package) and visualization (using the ggnetwork R package), please take a look at the package vignette.
 
 ```r
 # load ICON package and data frame of available datasets
