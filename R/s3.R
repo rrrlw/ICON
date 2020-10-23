@@ -47,13 +47,6 @@ as.ICON <- function(df) {
 # assume that if of class ICON, `x` is fine
 as.network.ICON <- function(x, directed = FALSE,
                             return_relabeled = FALSE) {
-  # make sure `network` dependency is available
-  if (!requireNamespace("network", quietly = TRUE)) {
-    stop('Package "network" needed for the as.network.ICON function to work.',
-         'Please install it.',
-         call. = FALSE)
-  }
-  
   # confirm that `x` is of class ICON
   if (!("ICON" %in% class(x))) {
     stop(paste("Data must be of class ICON (acquired using",
