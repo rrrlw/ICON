@@ -40,6 +40,8 @@ The ICON R package aims to decrease redundant scut work (data formatting) by pro
 Currently, the ICON R package provides `r nrow(ICON_data)` complex networks.
 As can be reasonably inferred by reading this paragraph, referring to the package as "the ICON R package" can become quite tedious with multiple mentions; as such, the R package will be referred to simply as "ICON" for the remainder of this vignette and the website will be referred to as "the ICON website".
 
+To learn more about ICON, you can visit the associated [website](https://rrrlw.github.io/ICON), [GitHub repo](https://github.com/rrrlw/ICON), and [CRAN page](https://CRAN.R-project.org/package=ICON).
+
 ## Which datasets are included in ICON?
 
 The `ICON_data` dataset (loaded in the Setup section) provides a summary of all the datasets that are available through ICON.
@@ -74,7 +76,7 @@ Although this comes with the disadvantage of not having all datasets immediately
 Once the list of available datasets has been explored, the complex networks can be downloaded using the `get_data` function and the `Var_name` column in `ICON_data`.
 For example, the first network in `ICON_data` has `Var_name` set to `aishihik_intensity`, so we download it and peek as follows.
 
-```{r aishihik, cache=TRUE}
+```{r aishihik}
 get_data("aishihik_intensity")
 
 head(aishihik_intensity)
@@ -87,7 +89,7 @@ Weighted (and some unweighted) networks will contain more than two columns; the 
 The `get_data` function can also download multiple datasets at once.
 Note that the `get_data`'s `envir` parameter can be modified to select a different environment; by default, the objects will load on the global environment (`.GlobalEnv`).
 
-```{r dl_mult, cache=TRUE}
+```{r dl_mult}
 get_data(c("coldlake_intensity", "fullerene_c60"))
 
 head(coldlake_intensity)
@@ -108,7 +110,7 @@ Once downloaded, the complex networks can be stored locally in a binary (e.g. RD
 ## How to analyze or visualize networks acquired through ICON?
 
 Although ICON provides the complex networks, it does not provide functionality to analyze or visualize them.
-However, the S3 generic `as.network.ICON` is provided to permit use of the network and ggnetwork R packages for analysis and visualization, respectively.
+However, the S3 generic `as.network.ICON` is provided to permit use of the [network](https://CRAN.R-project.org/package=network) and [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) R packages for analysis and visualization, respectively.
 The following code shows how to generate an object of class `network` using a previously downloaded complex network.
 
 ```{r network_obj}
@@ -154,3 +156,4 @@ ggplot(coerced_network, aes(x = x, y = y, xend = xend, yend = yend)) +
 ```
 
 Implementing an S3 generic for the `as.network` method and `ICON` class thus makes ICON datasets compatible with the network and ggnetwork packages, considerably simplifying the processes for network analysis and visualization.
+ICON's [GitHub README](https://github.com/rrrlw/ICON/blob/master/README.md) provides sample code to analyze and visualize ICON complex networks using [igraph](https://CRAN.R-project.org/package=igraph) as an alternative.
