@@ -13,6 +13,10 @@ test_that("as.network.ICON generic works", {
   converted_network <- converted$network
   converted_relabel <- converted$label
   
+  converted2 <- network::as.network(test_obj,
+                                    directed = TRUE,
+                                    return_relabeled = FALSE)
+  
   # test if everything worked as expected
   expect_equal(network::get.edge.attribute(converted_network, "attrib"),
                test_obj$attrib)
@@ -31,4 +35,6 @@ test_that("as.network.ICON generic works", {
   names(converted_relabel) <- NULL
   expect_equal(converted_relabel,
                seq_len(length(converted_relabel)))
+  
+  expect_equal(converted2, converted_network)
 })
