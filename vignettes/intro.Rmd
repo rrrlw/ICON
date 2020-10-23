@@ -40,7 +40,7 @@ The ICON R package aims to decrease redundant scut work (data formatting) by pro
 Currently, the ICON R package provides `r nrow(ICON_data)` complex networks.
 As can be reasonably inferred by reading this paragraph, referring to the package as "the ICON R package" can become quite tedious with multiple mentions; as such, the R package will be referred to simply as "ICON" for the remainder of this vignette and the website will be referred to as "the ICON website".
 
-To learn more about ICON, you can visit the associated [website](https://rrrlw.github.io/ICON), [GitHub repo](https://github.com/rrrlw/ICON), and [CRAN page](https://CRAN.R-project.org/package=ICON).
+To learn more about ICON, you can visit the associated [website](https://rrrlw.github.io/ICON/), [GitHub repo](https://github.com/rrrlw/ICON), and [CRAN page](https://CRAN.R-project.org/package=ICON).
 
 ## Which datasets are included in ICON?
 
