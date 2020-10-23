@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Details about ICON datasets — ICON_data • ICON</title>
+<title>Coerce ICON objects into network objects — as.network.ICON • ICON</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,13 @@
 
 
 
-<meta property="og:title" content="Details about ICON datasets — ICON_data" />
-<meta property="og:description" content="Data frame containing relevant details of each network dataset included
-in the ICON R package." />
+<meta property="og:title" content="Coerce ICON objects into network objects — as.network.ICON" />
+<meta property="og:description" content="`ICON::get_data` returns data frames that also have class `ICON`. However,
+conducting network analysis could require using another R package and its
+associated network structure and class. The `as.network.ICON` method is an
+S3 generic for the `network::as.network` method and the `ICON` class. It
+allows `ICON` users to take full advantage of the functionality provided in
+the `network` package using `network` objects." />
 
 
 
@@ -124,45 +128,68 @@ in the ICON R package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Details about ICON datasets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rrrlw/ICON/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>ICON_data.Rd</code></div>
+    <h1>Coerce ICON objects into network objects</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rrrlw/ICON/blob/master/R/s3.R'><code>R/s3.R</code></a></small>
+    <div class="hidden name"><code>as.network.ICON.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Data frame containing relevant details of each network dataset included
-in the ICON R package.</p>
+    <p>`ICON::get_data` returns data frames that also have class `ICON`. However,
+conducting network analysis could require using another R package and its
+associated network structure and class. The `as.network.ICON` method is an
+S3 generic for the `network::as.network` method and the `ICON` class. It
+allows `ICON` users to take full advantage of the functionality provided in
+the `network` package using `network` objects.</p>
     </div>
 
-    <pre class="usage"><span class='va'>ICON_data</span></pre>
+    <pre class="usage"><span class='co'># S3 method for ICON</span>
+<span class='fu'>as.network</span><span class='op'>(</span><span class='va'>x</span>, directed <span class='op'>=</span> <span class='cn'>FALSE</span>, return_relabeled <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>edgelist of classes `ICON` and `data.frame` to be coerced</p></td>
+    </tr>
+    <tr>
+      <th>directed</th>
+      <td><p>`TRUE` if network has directed edges; `FALSE` otherwise</p></td>
+    </tr>
+    <tr>
+      <th>return_relabeled</th>
+      <td><p>nodes are likely to be relabeled to fit naming
+conventions of the `network` package; if the names are important, setting
+`return_relabeled` to `TRUE` returns the resulting `network` object and
+a relabeling key-pair vector</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 10 columns and 22 rows:</p><dl>
-  <dt>Var_name</dt><dd><p>character; variable name to access dataset in R</p></dd>
-  <dt>Edges</dt><dd><p>integer; number of edges in network</p></dd>
-  <dt>Directed</dt><dd><p>logical; 0 if undirected network, 1 if directed</p></dd>
-  <dt>Weighted</dt><dd><p>logical; 0 if unweighted network, 1 if weighted</p></dd>
-  <dt>Name</dt><dd><p>character; network title</p></dd>
-  <dt>Year</dt><dd><p>integer; year network was published/released</p></dd>
-  <dt>Source</dt><dd><p>character; usually URL to access raw network data</p></dd>
-  <dt>Description</dt><dd><p>character; short description of network</p></dd>
-  <dt>Citation</dt><dd><p>character; how to cite network if used</p></dd>
+    <p>if `return_relabeled` is `FALSE`, a `network` object; if
+  `return_relabeled` is `TRUE`, a `list` containing the `network` object and
+  the relabeling key-pair vector</p>
 
-</dl>
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='co'># download dataset using ICON</span>
+<span class='fu'><a href='get_data.html'>get_data</a></span><span class='op'>(</span><span class='st'>"aishihik_intensity"</span><span class='op'>)</span>
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+<span class='co'># don't care about relabeled vertices</span>
+<span class='va'>converted</span> <span class='op'>&lt;-</span> <span class='fu'>as.network</span><span class='op'>(</span><span class='va'>aishihik_intensity</span>, directed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-    <p><a href='https://icon.colorado.edu'>https://icon.colorado.edu</a></p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+<span class='co'># we care about relabeled vertices</span>
+<span class='va'>converted2</span> <span class='op'>&lt;-</span> <span class='fu'>as.network</span><span class='op'>(</span><span class='va'>aishihik_intensity</span>, directed <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                        return_relabeled <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-    <p>Citation:
-Aaron Clauset, Ellen Tucker, and Matthias Sainz, "The Colorado Index of
-Complex Networks." https://icon.colorado.edu/ (2016).</p>
-<p>Raoul R. Wadhwa and Jacob G. Scott, "ICON" R package.
-https://cran.r-project.org/package=ICON (2019).</p>
+<span class='co'># get the network</span>
+<span class='va'>converted_network</span> <span class='op'>&lt;-</span> <span class='va'>converted2</span><span class='op'>$</span><span class='va'>network</span>
 
+<span class='co'># get the relabeling key-pair vector</span>
+<span class='va'>converted_relabel</span> <span class='op'>&lt;-</span> <span class='va'>converted2</span><span class='op'>$</span><span class='va'>labels</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
