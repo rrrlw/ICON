@@ -26,6 +26,9 @@ devtools::install_github("rrrlw/ICON")
 
 ## Sample code
 
+The sample code below demonstrates network visualization using the igraph R package.
+For a more detailed look at network analysis (using the network R package) and visualization (using the ggnetwork R package), please take a look at the package vignette.
+
 ```r
 # load ICON package and data frame of available datasets
 library("ICON")
