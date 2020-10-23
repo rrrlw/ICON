@@ -2,6 +2,8 @@
 
 * Implemented S3 generic: method = network::as.network; class = ICON
 * Added basic unit testing.
+* Added code coverage using codecov
+* Additional column of metadata in `ICON_data` named "Domain" represents network domain/discipline
 
 Added following datasets:
 * procure_* (234 datasets for various EU countries and years)
