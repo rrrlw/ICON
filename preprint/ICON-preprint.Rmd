@@ -18,11 +18,13 @@ abstract: |
   Sample code in this report also demonstrates how `ICON` can be used in conjunction with the `igraph` package.
   Currently on version $0.4.0$, `ICON` has been accepted by the Comprehensive R Archive Network.
   It is our hope that `ICON` will serve as a standard corpus for complex network research and prevent redundant work that would be otherwise necessary by individual research groups.
-  The open-source code for `ICON` and for this reproducible report can be found at \url{https://github.com/rrrlw/ICON}.
+  The open source code for `ICON` and for this reproducible report can be found at \url{https://github.com/rrrlw/ICON}.
 keywords:
   - complex networks
   - R programming language
 bibliography: ICONrefs.bib
+nocite: |
+  @rpkg-book
 csl: num_style.csl
 output: rticles::arxiv_article
 ---
@@ -38,7 +40,7 @@ Here, we introduce the `ICON` R package as such a solution, providing a large an
 
 # Implementation details
 
-\texttt{ICON} v$0.4.0$ is a package for the R programming language hosted on the Comprehensive R Archive Network.[@rlang]
+\texttt{ICON} v$0.4.0$ is a package for the R programming language hosted on the Comprehensive R Archive Network (CRAN).[@rlang]
 It strongly depends on the `network` ($\geq 1.16$) and `utils` ($\geq 3.6.1$) R packages and weakly depends on the `covr` ($\geq 3.5$), `ggnetwork` ($\geq 0.5$), `ggplot2` ($\geq 3.3$), `knitr` ($\geq 1.30$), `testthat` ($\geq 2.3$), and `rmarkdown` ($\geq 2.4$) R packages.[@rlang;@network-pkg;@covr-pkg;@ggnetwork-pkg;@ggplot2-pkg;@knitr-pkg;@testthat-pkg;@rmarkdown-pkg]
 Throughout the development process, the `devtools` R package was heavily used.[@devtools-pkg]
 This report is fully reproducible with code (GPL-3 license) available at \url{https://github.com/rrrlw/ICON}.
@@ -57,7 +59,31 @@ install.packages("ICON")
 remotes::install_github("rrrlw/ICON", build_vignettes = TRUE)
 ```
 
-## Complex network datasets (and hosting)
+## Complex network datasets
+
+```{r calc-prep, echo=FALSE, message=FALSE, results='hide'}
+library("ICON")
+data("ICON_data")
+
+largest_row <- which(ICON_data$Edges == max(ICON_data$Edges))
+```
+
+Currently, `ICON` provides `r nrow(ICON::ICON_data)` complex network edge lists.
+The largest network, named ``r ICON_data$Var_name[largest_row]``, consists of `r ICON_data$Edges[largest_row]` edges.
+Due to the large volume of data and CRAN package size limits, all of `ICON`'s networks cannot be downloaded to a local machine upon installation and loaded with `utils::data`.
+Instead, the package's GitHub repository contains a directory named `data-host`, which `ICON::get_data` accesses to download networks named by the user.
+After successful download, `ICON::get_data` loads these networks into the user's environment of choice (default: `.GlobalEnv`) and cleans any intermediate artifacts.
+To avoid dependence on an internet connection, users can save and access individual networks in RDS format (binary; `.rds` extension; via `base::saveRDS` and `base::readRDS`) or do the same for a set of networks in RData/RDa format (binary; `.RData` or `.rda` extension; via `base::save` and `base::load`).
+An obvious deficiency of this system is the inability to take advantage of automated data documentation and checking tools, such as `roxygen2`.[@roxygen2-pkg]
+However, the `ICON::ICON_data` dataset provides the necessary documentation for `ICON` users and implements a sufficient and slightly soporific checking system for the package authors.
+
+Although providing standardized data format avoids redundant work, an important processing step being completed by a single party (package authors) opens the door to inaccuracies.
+It befits us to simply counter this limitation with `ICON`'s status as free, open-source software (FOSS), which offers every user the opportunity to inspect, question, and correct all aspects of `ICON`.
+The `data-raw` directory in `ICON`'s GitHub repository follows Wickham's (2015) advice and contains: (1) the original raw data acquired directly from the source indexed by the ICON website; (2) the R code that converts each raw dataset into a data frame comprised of an edge list and potential edge attributes; and (3) the R code saving the resulting data frame as an RDA file in the aforementioned `data-host` directory.
+We hope that this not only offers, but indeed encourages, `ICON` users to confirm dataset accuracy.
+
+Note that to minimize unnecessary package elements, `ICON`'s `.Rbuildignore` contains `data-host` and `data-raw`.
+However, for reproducibility and documentation, `ICON`'s GitHub repository provides public access to both directories.
 
 ## The ICON class and network S3 generic
 
@@ -101,5 +127,7 @@ plot(my_graph,
 ```
 
 # Discussion/Conclusions
+
+* encourage users to contribute complex network datasets via CONTIBUTING.md and CODE_OF_CONDUCT.md (Contributor Covenant)
 
 # References
