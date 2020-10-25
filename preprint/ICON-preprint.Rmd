@@ -4,20 +4,20 @@ authors:
   - name: Raoul R. Wadhwa
     department: Cleveland Clinic Lerner College of Medicine
     affiliation: Case Western Reserve University
-    location: Cleveland, OH 44195
+    location: Cleveland, OH 44195, United States
     email: raoul.wadhwa@case.edu
   - name: Jacob G. Scott
     department: Translational Hematology \& Oncology Research
     affiliation: Lerner Research Institute, Cleveland Clinic
-    location: Cleveland, OH 44195
+    location: Cleveland, OH 44195, United States
     email: ScottJ10@ccf.org
 abstract: |
   We introduce `ICON`, an R package that contains `r nrow(ICON::ICON_data)` complex network datasets in a standard edgelist format.
   All provided datasets have associated citations and have been indexed by the Colorado Index of Complex Networks - also referred to as ICON.
   In addition to supplying a large and diverse corpus of useful real-world networks, `ICON` also implements an S3 generic to work with the `network` and `ggnetwork` R packages for network analysis and visualization, respectively.
   Sample code in this report also demonstrates how `ICON` can be used in conjunction with the `igraph` package.
-  Currently on version $0.4.0$, `ICON` has been accepted by the Comprehensive R Archive Network.
-  It is our hope that `ICON` will serve as a standard corpus for complex network research and prevent redundant work that would be otherwise necessary by individual research groups.
+  Currently, the Comprehensive R Archive Network hosts `ICON` v$0.4.0$.
+  We hope that `ICON` will serve as a standard corpus for complex network research and prevent redundant work that would be otherwise necessary by individual research groups.
   The open source code for `ICON` and for this reproducible report can be found at \url{https://github.com/rrrlw/ICON}.
 keywords:
   - complex networks
@@ -149,7 +149,7 @@ Section \ref{networkusecase} will provide sample code that highlights the benefi
 
 Before starting with the use cases, the following code chunk will load the appropriate libraries and download the sample dataset.
 
-```{r use-setup,message=FALSE,results='hide'}
+```{r use-setup,message=FALSE}
 # load necessary libraries
 library("ICON")
 library("network")
@@ -157,15 +157,37 @@ library("ggnetwork")
 library("ggplot2")
 library("igraph")
 
+# for reproducibility
+set.seed(42)
+
 # download sample dataset
 get_data("seed_disperse_beehler")
 ```
 
-## With the \texttt{network} R package {#networkusecase}
+A quick exploration of `seed_disperse_beehler` will grant a deeper understanding of the use cases.
+Primarily, we would like to explore the third column - named `Frequency`.
+Due to the heavy skew, we will use two consecutive logarithmic transformations to more easily see the effects of coloring edges by the `Frequency` edge attribute.
+The following code chunk produces histograms of `seed_disperse_beehler$Frequency` before and after this transformation for comparison.
 
----
+```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=3.4, fig.height=2}
+# plot a histogram w/o transformation (skewed, tough to see differences)
+ggplot(seed_disperse_beehler, aes(x = Frequency)) +
+  geom_histogram(bins = 10, fill = "white", color = "black") +
+  theme_bw()
 
-```{r network-case,message=FALSE,results='hide',fig.width=3,fig.height=3}
+# plot a histogram w/ transformation (more spread out, differences easily seen)
+ggplot(seed_disperse_beehler, aes(x = log(log(Frequency)))) +
+  geom_histogram(bins = 10, fill = "white", color = "black") +
+  theme_bw()
+```
+
+## With the `network` R package {#networkusecase}
+
+Using the `seed_disperse_beehler` sample dataset, we first coerce it to have class `network` with the `as.network.ICON` method under the `as.network` S3 generic.
+This allows us to take advantage of the large set of tools already built in the [Statnet suite](http://www.statnet.org) of R packages.
+Although we first use `ggnetwork` to rapidly visualize the nodes and edges, we also show how to visualize edge attributes toward the end of the code chunk.
+
+```{r network-case,message=FALSE,fig.width=6.75,fig.height=4}
 # setup using as.network generic
 coerced <- as.network(seed_disperse_beehler)
 
@@ -174,11 +196,34 @@ ggplot(coerced, aes(x = x, y = y, xend = xend, yend = yend)) +
   geom_edges(alpha = 0.25) +
   geom_nodes() +
   theme_blank()
+
+# are there any edge attributes in `seed_disperse_beehler`?
+#   YES, we have the "Frequency" edge attribute (see third column name)
+str(seed_disperse_beehler)
+
+# is this edge attribute also present in the coerced network?
+#   YES, let's plot it in the next network visualization (see end of output)
+print(coerced)
+
+# plot with log(log(Frequency)) as an edge attribute (edge color)
+ggplot(coerced, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges(aes(color = log(log(Frequency)))) +
+  geom_nodes() +
+  theme_blank()
 ```
 
-## With the \texttt{igraph} R package
+Of course, even with the edge attribute, we are only scraping the surface of the visualization capability provided.
+More details can be found in the documentation of the appropriate packages.
 
-```{r igraph-case,message=FALSE,results='hide',fig.width=4,fig.height=4}
+## With the `igraph` R package
+
+The `igraph` package provides a rich set of network analysis and visualization tools.
+As a consequence, the installed package is large.
+Making `ICON` strongly dependent on `igraph` by building an `as.igraph.ICON` method for the `as.igraph` S3 generic would require all `ICON` users to also install `igraph`.
+To avoid this, `ICON` does not strongly depend on `igraph`, however, the following code chunk and the [GitHub README](https://github.com/rrrlw/ICON/blob/master/README.md) demonstrate how to use `ICON` in conjunction with `igraph` to emphasize that, despite the size limitation that excluded it from being an `ICON` dependency, it is a powerful tool.
+Instead of coercing `seed_disperse_beehler` into an object with class `igraph`, we transfer the information in `seed_disperse_beehler` to a new `igraph` object with `igraph::graph_from_edgelist` and then visualize the network using the `igraph::plot.igraph` method for the `base::plot` S3 generic.
+
+```{r igraph-case,message=FALSE,results='hide',fig.width=6,fig.height=4}
 # plot network using igraph
 my_graph <- graph_from_edgelist(as.matrix(seed_disperse_beehler[, 1:2]),
                                 directed = FALSE)
@@ -186,8 +231,17 @@ plot(my_graph,
      vertex.label = NA, vertex.size = 5)
 ```
 
+As was the case with the previous use case, we have only scratched the surface of visualization possibilities.
+More details can be found in the `igraph` package documentation.
+
 # Discussion/Conclusions
 
-* encourage users to contribute complex network datasets via CONTIBUTING.md and CODE_OF_CONDUCT.md (Contributor Covenant)
+We have introduced the `ICON` R package, explained its potential use as a network corpus, and demonstrated its compatibility with existing complex network software.
+With time, we hope that `ICON`'s corpus will grow and encourage users to contribute complex network datasets by following steps in the package's [contributing guidelines](https://github.com/rrrlw/ICON/blob/master/CONTRIBUTING.md) and adhering to the [code of conduct](https://github.com/rrrlw/ICON/blob/master/CONTRIBUTING.md),[@covenant] both of which can be found on the package's GitHub repository.
+More details about the `ICON` R package can be found at the package website (https://rrrlw.github.io/ICON/), GitHub repository (https://github.com/rrrlw/ICON), and CRAN page (https://CRAN.R-project.org/package=ICON).
+
+# Acknowledgments
+
+The authors thank Aaron Clauset, PhD and the members of his research group at the University of Colorado Boulder for advice and for their tireless efforts in creating the Colorado Index of Complex Networks.
 
 # References
