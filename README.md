@@ -8,7 +8,7 @@
 [![CRAN version](http://www.r-pkg.org/badges/version/ICON)](https://CRAN.R-project.org/package=ICON)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ICON)](https://CRAN.R-project.org/package=ICON)
 
-[![Preprint](https://img.shields.io/badge/arXiv-2010.15222-red)]
+[![Preprint](https://img.shields.io/badge/arXiv-2010.15222-red)](https://arxiv.org/abs/2010.15222)
 
 ## Overview
 
