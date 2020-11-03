@@ -5,16 +5,15 @@ as.ICON <- function(df) {
   return(df)
 }
 
-#' Coerce ICON objects into network objects
+#' Convert ICON objects to network objects
 #' 
 #' `ICON::get_data` returns data frames that also have class `ICON`. However,
 #' conducting network analysis could require using another R package and its
-#' associated network structure and class. The `as.network.ICON` method is an
-#' S3 generic for the `network::as.network` method and the `ICON` class. It
+#' associated network structure and class. The `as_network` method is a
+#' function that converts `ICON` objects to `network` objects. It
 #' allows `ICON` users to take full advantage of the functionality provided in
-#' the `network` package using `network` objects.
+#' the `network` package.
 #' 
-#' @importFrom network as.network
 #' @param x edgelist of classes `ICON` and `data.frame` to be coerced
 #' @param directed `TRUE` if network has directed edges; `FALSE` otherwise
 #' @param return_relabeled nodes are likely to be relabeled to fit naming
@@ -31,10 +30,10 @@ as.ICON <- function(df) {
 #' get_data("aishihik_intensity")
 #' 
 #' # don't care about relabeled vertices
-#' converted <- as.network(aishihik_intensity, directed = TRUE)
+#' converted <- as_network(aishihik_intensity, directed = TRUE)
 #' 
 #' # we care about relabeled vertices
-#' converted2 <- as.network(aishihik_intensity, directed = TRUE,
+#' converted2 <- as_network(aishihik_intensity, directed = TRUE,
 #'                         return_relabeled = TRUE)
 #' 
 #' # get the network
@@ -45,13 +44,19 @@ as.ICON <- function(df) {
 #' }
 # S3 generic method to convert ICON data frames to network class
 # assume that if of class ICON, `x` is fine
-as.network.ICON <- function(x, directed = FALSE,
-                            return_relabeled = FALSE) {
+as_network <- function(x, directed = FALSE,
+                       return_relabeled = FALSE) {
   # confirm that `x` is of class ICON
   if (!("ICON" %in% class(x))) {
     stop(paste("Data must be of class ICON (acquired using",
                "ICON::get_data) for as.network.ICON to work.",
                "Data class =", class(x)))
+  }
+  
+  # confirm that the network package is installed
+  if (!requireNamespace("network", quietly = TRUE)) {
+    stop("Package \"network\" needed for this function to work. Please install it.",
+         call. = FALSE)
   }
   
   # relabel vertices
