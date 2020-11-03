@@ -1,3 +1,9 @@
+## ICON v0.4.1
+
+* switched from S3 generics (as.network.ICON) to conversion functions (as_network and as_igraph)
+* moved network and ggnetwork from Imports to Suggests
+* added igraph to Suggests
+
 ## ICON v0.4.0
 
 * Implemented S3 generic: method = network::as.network; class = ICON
