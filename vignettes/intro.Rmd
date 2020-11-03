@@ -1,7 +1,7 @@
 ---
 title: "Introduction to ICON"
 author: "Raoul R. Wadhwa and Jacob G. Scott"
-date: "22 October 2020"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to ICON}
@@ -107,24 +107,24 @@ get_data(ICON_data$Var_name)
 
 Once downloaded, the complex networks can be stored locally in a binary (e.g. RDA/RData, RDS) or plain-text (CSV, TXT) format; storing it locally removes the reliance on an internet connection for future use.
 
-## How to analyze or visualize networks acquired through ICON?
+## Work with ICON networks using the network R package
 
 Although ICON provides the complex networks, it does not provide functionality to analyze or visualize them.
-However, the S3 generic `as.network.ICON` is provided to permit use of the [network](https://CRAN.R-project.org/package=network) and [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) R packages for analysis and visualization, respectively.
+However, the `as_network` function is provided to permit use of the [network](https://CRAN.R-project.org/package=network) and [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) R packages for analysis and visualization, respectively.
 The following code shows how to generate an object of class `network` using a previously downloaded complex network.
 
 ```{r network_obj}
 # make sure that the downloaded network has class `ICON`
 class(aishihik_intensity)
 
-# coerce to class `network` (`as.network.ICON` is called)
-coerced_network <- as.network(aishihik_intensity)
+# convert to class `network`
+conv_network <- as_network(aishihik_intensity)
 
-# check if the coerced network has the correct class
-class(coerced_network)
+# check if the converted network has the correct class
+class(conv_network)
 
-# peek at the coerced network (pay attention to number of edges)
-coerced_network
+# peek at the converted network (pay attention to number of edges)
+conv_network
 
 # check number of vertices in initial ICON object
 length(unique(c(aishihik_intensity[, 1], aishihik_intensity[, 2])))
@@ -133,27 +133,27 @@ length(unique(c(aishihik_intensity[, 1], aishihik_intensity[, 2])))
 nrow(aishihik_intensity)
 ```
 
-The initial network (named `aishihik_intensity`) and the coerced network (named `coerced_network`) both contain `r get.network.attribute(coerced_network, "n")` vertices and `r nrow(aishihik_intensity)` edges.
+The initial network (named `aishihik_intensity`) and the converted network (named `conv_network`) both contain `r get.network.attribute(conv_network, "n")` vertices and `r nrow(aishihik_intensity)` edges.
 Once we have an object of class `network`, we can visualize it easily using ggnetwork (a ggplot2 extension).
 
 ```{r network_viz, fig.width = 4}
 # ggnetwork fortifies objects of class `network` without additional code
 # the aes parameters should be used as-is
-ggplot(coerced_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+ggplot(conv_network, aes(x = x, y = y, xend = xend, yend = yend)) +
   geom_edges() +
   geom_nodes() +
   theme_blank()
 ```
 
-`coerced_network` also has an edge attribute named `Intensity` (see the name of the third column name in `aishihik_intensity`).
+`conv_network` also has an edge attribute named `Intensity` (see the name of the third column name in `aishihik_intensity`).
 This edge attribute can be used to color the edges as follows.
 
 ```{r col_edges, fig.width = 5}
-ggplot(coerced_network, aes(x = x, y = y, xend = xend, yend = yend)) +
+ggplot(conv_network, aes(x = x, y = y, xend = xend, yend = yend)) +
   geom_edges(aes(color = Intensity)) + # this line changed
   geom_nodes() +
   theme_blank()
 ```
 
-Implementing an S3 generic for the `as.network` method and `ICON` class thus makes ICON datasets compatible with the network and ggnetwork packages, considerably simplifying the processes for network analysis and visualization.
+Implementing the `as_network` function and `ICON` class thus makes ICON datasets compatible with the network and ggnetwork packages, considerably simplifying the processes for network analysis and visualization.
 ICON's [GitHub README](https://github.com/rrrlw/ICON/blob/master/README.md) provides sample code to analyze and visualize ICON complex networks using [igraph](https://CRAN.R-project.org/package=igraph) as an alternative.

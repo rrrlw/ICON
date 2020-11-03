@@ -1,4 +1,9 @@
-test_that("as.network.ICON generic works", {
+test_that("as_network works", {
+  # need network package to be installed
+  if (!requireNamespace("network", quietly = TRUE)) {
+    skip()
+  }
+  
   # setup ICON/data.frame object
   NROW <- 25
   test_obj <- data.frame(x = as.integer(runif(NROW, 1, 10)),
@@ -7,15 +12,15 @@ test_that("as.network.ICON generic works", {
   class(test_obj) <- c("ICON", "data.frame")
   
   # coerce to network object and get relabeling key-pair vector
-  converted <- network::as.network(test_obj,
-                                   directed = TRUE,
-                                   return_relabeled = TRUE)
+  converted <- as_network(test_obj,
+                          directed = TRUE,
+                          return_relabeled = TRUE)
   converted_network <- converted$network
   converted_relabel <- converted$label
   
-  converted2 <- network::as.network(test_obj,
-                                    directed = TRUE,
-                                    return_relabeled = FALSE)
+  converted2 <- as_network(test_obj,
+                           directed = TRUE,
+                           return_relabeled = FALSE)
   
   # test if everything worked as expected
   expect_equal(network::get.edge.attribute(converted_network, "attrib"),

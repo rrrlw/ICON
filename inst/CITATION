@@ -1,0 +1,13 @@
+citHeader("To cite ICON in publications use:")
+
+citEntry(entry = "Article",
+  title = "Exploring complex networks with the ICON R package",
+  author = "Raoul R. Wadhwa and Jacob G. Scott",
+  journal = "arXiv",
+  year = "2020",
+  pages = "2010.15222",
+  url = "https://arxiv.org/abs/2010.15222",
+  textVersion = paste("Wadhwa RR, Scott JG (2020).",
+    "Exploring complex networks with the ICON R package.",
+    "arXiv: 2010.15222.")
+)

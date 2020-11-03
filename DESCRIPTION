@@ -1,7 +1,7 @@
 Package: ICON
 Type: Package
 Title: Provides Easy Access to Complex Systems Datasets
-Version: 0.4.0
+Version: 0.4.1
 Authors@R:
     c(person(given = "Raoul",
              family = "Wadhwa",
@@ -19,9 +19,7 @@ Description: Provides easy-to-use and easy-to-access datasets from the
     <https://icon.colorado.edu>. Specific ICON datasets of interest can
     be requested at the BugReports URL <https://github.com/rrrlw/ICON/issues>.
 Depends: R (>= 2.10)
-Imports:
-    network (>= 1.16),
-    utils (>= 3.6.1)
+Imports: utils (>= 3.6.1)
 License: CC0
 Encoding: UTF-8
 LazyData: true
@@ -32,7 +30,9 @@ Suggests:
     covr (>= 3.5),
     ggnetwork (>= 0.5),
     ggplot2 (>= 3.3),
+    igraph (>= 1.2.5),
     knitr (>= 1.30),
-    testthat (>= 2.3),
-    rmarkdown (>= 2.4)
+    network (>= 1.16),
+    rmarkdown (>= 2.4),
+    testthat (>= 2.3)
 VignetteBuilder: knitr
