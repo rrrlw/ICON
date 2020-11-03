@@ -9,10 +9,9 @@ as.ICON <- function(df) {
 #' 
 #' `ICON::get_data` returns data frames that also have class `ICON`. However,
 #' conducting network analysis could require using another R package and its
-#' associated network structure and class. The `as_network` method is a
-#' function that converts `ICON` objects to `network` objects. It
-#' allows `ICON` users to take full advantage of the functionality provided in
-#' the `network` package.
+#' associated network structure and class. The `as_network` function converts
+#' `ICON` objects to `network` objects. It allows `ICON` users to take full
+#' advantage of the functionality provided in the `network` package.
 #' 
 #' @param x edgelist of classes `ICON` and `data.frame` to be coerced
 #' @param directed `TRUE` if network has directed edges; `FALSE` otherwise
@@ -42,7 +41,6 @@ as.ICON <- function(df) {
 #' # get the relabeling key-pair vector
 #' converted_relabel <- converted2$labels
 #' }
-# S3 generic method to convert ICON data frames to network class
 # assume that if of class ICON, `x` is fine
 as_network <- function(x, directed = FALSE,
                        return_relabeled = FALSE) {
@@ -93,7 +91,61 @@ as_network <- function(x, directed = FALSE,
   }
 }
 
-# S3 generic method to convert ICON data frames to igraph class
-#as.igraph.ICON <- function(x) {
-#  
-#}
+#' Convert ICON objects to igraph objects
+#' 
+#' `ICON::get_data` returns data frames that also have class `ICON`. However,
+#' conducting network analysis could require using another R package and its
+#' associated network structure and class. The `as_igraph` function converts
+#' `ICON` objects to `igraph` objects. It allows `ICON` users to take full
+#' advantage of the functionality provided in the `igraph` package.
+#' 
+#' Note that if the `ICON` object has more than two columns, `as_igraph`
+#' assumes that the third column is numeric and represents edge weights.
+#' Use `weighted = FALSE` to ignore existing edge weights and re-order
+#' columns if you would prefer another column be used for edge weights.
+#' 
+#' @param x edgelist of classes `ICON` and `data.frame` to be coerced
+#' @param directed `TRUE` if network has directed edges; `FALSE` otherwise
+#' @param weighted `TRUE` if network has weighted edges; `FALSE` otherwise
+#' @return an `igraph` object
+#' @export
+#' @examples
+#' \dontrun{
+#' # download dataset using ICON
+#' get_data("chess")
+#' 
+#' # don't care about relabeled vertices
+#' converted <- as_igraph(chess, directed = TRUE, weighted = TRUE)
+#' 
+#' # look at edges
+#' igraph::E(converted)
+#' 
+#' # look at edge weights
+#' igraph::E(converted)$weight
+#' }
+# assume that if of class ICON, `x` is fine
+as_igraph <- function(x, directed = FALSE, weighted = (ncol(x) > 2)) {
+  # confirm that `x` is of class ICON
+  if (!("ICON" %in% class(x))) {
+    stop(paste("Data must be of class ICON (acquired using",
+               "ICON::get_data) for as.network.ICON to work.",
+               "Data class =", class(x)))
+  }
+  
+  # confirm that the igraph package is installed
+  if (!requireNamespace("igraph", quietly = TRUE)) {
+    stop("Package \"igraph\" needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+  
+  # convert to igraph object
+  ans <- igraph::graph_from_edgelist(as.matrix(x[, c(1, 2)]), directed = directed)
+  
+  # add weights if necessary
+  if (ncol(x) > 2) {
+    igraph::E(ans)$weight <- as.numeric(x[, 3])
+  }
+  
+  # return igraph object
+  return(ans)
+}

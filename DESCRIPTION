@@ -1,7 +1,7 @@
 Package: ICON
 Type: Package
 Title: Provides Easy Access to Complex Systems Datasets
-Version: 0.4.0
+Version: 0.4.1
 Authors@R:
     c(person(given = "Raoul",
              family = "Wadhwa",
@@ -30,6 +30,7 @@ Suggests:
     covr (>= 3.5),
     ggnetwork (>= 0.5),
     ggplot2 (>= 3.3),
+    igraph (>= 1.2.5),
     knitr (>= 1.30),
     network (>= 1.16),
     rmarkdown (>= 2.4),
