@@ -132,19 +132,14 @@ str(wordadj_french)
 
 A keen reader might observe that all of `ICON`'s datasets could be downloaded with `get_data(ICON_data$Var_name)`; due to the potential runtime and memory commitment, we strongly recommend that users exercise caution if attempting this.
 
-## Using ICON datasets with the network and igraph packages
-
-<EDIT THIS>
+## The `ICON` S3 class
 
 Looking at the structure of the complex networks with `utils::str` shows that `ICON` complex networks all have two classes: `ICON` and `data.frame`.
 The latter provides a suitable container for edge list objects with potential edge attributes in rectangular format.
-The former, an S3 class, benefits users in two ways.
-First, it provides certain guarantees about object format, i.e., an unmodified complex network object acquired via `ICON` will have the `ICON` S3 class and is guaranteed to be a data frame containing an edge list in which each row represents a single edge, the first two columns specify nodes that define the corresponding edge, and additional columns define edge attributes.
+The former, an S3 class, benefits users by providing certain guarantees about object format, i.e., an unmodified complex network object acquired via the `ICON` package will have the `ICON` S3 class and is guaranteed to be a data frame containing an edge list in which each row represents a single edge, the first two columns specify nodes that define the corresponding edge, and additional columns define edge attributes.
 This standard format guarantee allows users, among other things, to generate code for one `ICON` dataset with assurances that it will function effectively for other `ICON` datasets.
-Second, the S3 class allows users to take advantage of relevant S3 generics.
-`ICON` specifically defines the `as.network.ICON` method for compatibility with the `as.network` generic in the `network` R package.
-This allows users to easily analyze and visualize `ICON` datasets with the reliable `network` and `ggnetwork` R packages, respectively.
-Section \ref{networkusecase} will provide sample code that highlights the benefit of this feature.
+The S3 class will also allow users to take advantage of relevant S3 generic methods.
+In future `ICON` versions, we aim to implement methods for common generics, e.g. `base::plot`.
 
 # Use cases
 
@@ -185,8 +180,8 @@ ggplot(seed_disperse_beehler, aes(x = log(log(Frequency)))) +
 ## With the `network` R package {#networkusecase}
 
 Using the `seed_disperse_beehler` sample dataset, we first convert it to a `network` object with `as_network`.
-This allows us to take advantage of the large set of tools already built in the [Statnet suite](http://www.statnet.org) of R packages.
-Although we first use `ggnetwork` to rapidly visualize the nodes and edges, we also show how to visualize edge attributes toward the end of the code chunk.
+This allows us to take advantage of the large set of tools already built in the [Statnet suite](http://www.statnet.org) of R packages, specifically the [network](https://CRAN.R-project.org/package=network) package.
+Although we first use [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) to rapidly visualize the nodes and edges, we also show how to visualize edge attributes toward the end of the code chunk.
 
 ```{r network-case,message=FALSE,fig.width=6.75,fig.height=4}
 # convert using ICON function
@@ -220,7 +215,7 @@ More details can be found in the documentation of the appropriate packages.
 
 Using the `seed_disperse_beehler` sample dataset, we first convert it to an `igraph` object with `as_igraph`.
 This allows us to take advantage of the large set of tools already built in the [igraph library](https://igraph.org).
-The igraph R package allows us to analyze complex networks with built-in functions and visualize them with the `igraph::plot.igraph` method for the `base::plot` S3 generic.
+The [igraph R package](https://CRAN.R-project.org/package=igraph) allows us to analyze complex networks with built-in functions and visualize them with the `igraph::plot.igraph` method for the `base::plot` S3 generic.
 
 ```{r igraph-case,message=FALSE,fig.width=6.75,fig.height=4}
 # convert using ICON function
