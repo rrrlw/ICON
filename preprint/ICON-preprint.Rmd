@@ -138,8 +138,7 @@ Looking at the structure of the complex networks with `utils::str` shows that `I
 The latter provides a suitable container for edge list objects with potential edge attributes in rectangular format.
 The former, an S3 class, benefits users by providing certain guarantees about object format, i.e., an unmodified complex network object acquired via the `ICON` package will have the `ICON` S3 class and is guaranteed to be a data frame containing an edge list in which each row represents a single edge, the first two columns specify nodes that define the corresponding edge, and additional columns define edge attributes.
 This standard format guarantee allows users, among other things, to generate code for one `ICON` dataset with assurances that it will function effectively for other `ICON` datasets.
-The S3 class will also allow users to take advantage of relevant S3 generic methods.
-In future `ICON` versions, we aim to implement methods for common generics, e.g. `base::plot`.
+The S3 class will also allow users to take advantage of relevant S3 generic methods, such as `base::print`.
 
 # Use cases
 
@@ -158,6 +157,12 @@ set.seed(42)
 
 # download sample dataset
 get_data("seed_disperse_beehler")
+
+# peek inside dataset using generic
+print(seed_disperse_beehler)
+
+# can also peek with print.ICON
+print.ICON(seed_disperse_beehler)
 ```
 
 A quick exploration of `seed_disperse_beehler` will grant a deeper understanding of the use cases.
@@ -165,7 +170,7 @@ Primarily, we would like to explore the third column - named `Frequency`.
 Due to the heavy skew, we will use two consecutive logarithmic transformations to more easily see the effects of coloring edges by the `Frequency` edge attribute.
 The following code chunk produces histograms of `seed_disperse_beehler$Frequency` before and after this transformation for comparison.
 
-```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=3.4, fig.height=2}
+```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=6, fig.height=3}
 # plot a histogram w/o transformation (skewed, tough to see differences)
 ggplot(seed_disperse_beehler, aes(x = Frequency)) +
   geom_histogram(bins = 10, fill = "white", color = "black") +
