@@ -86,7 +86,7 @@
       <h1 data-toc-skip>Introduction to ICON</h1>
                         <h4 class="author">Raoul R. Wadhwa and Jacob G. Scott</h4>
             
-            <h4 class="date">03 November 2020</h4>
+            <h4 class="date">04 November 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rrrlw/ICON/blob/master/vignettes/intro.Rmd"><code>vignettes/intro.Rmd</code></a></small>
       <div class="hidden name"><code>intro.Rmd</code></div>
@@ -183,13 +183,14 @@
 <span class="co">#&gt; DATASET(S) aishihik_intensity LOADED</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">aishihik_intensity</span>)
+<span class="co">#&gt; # ICON complex network: 6 edges and 1 edge attributes</span>
 <span class="co">#&gt;   Fish Parasite Intensity</span>
 <span class="co">#&gt; 1    1       V1       5.8</span>
 <span class="co">#&gt; 2    1       V9       7.0</span>
 <span class="co">#&gt; 3    1      V16       3.0</span>
 <span class="co">#&gt; 4    1      V22       1.0</span>
 <span class="co">#&gt; 5    2       V3       7.2</span>
-<span class="co">#&gt; 6    2       V8      65.8</span>
+<span class="co">#&gt;     &lt;and 1 more edges&gt;</span>
 </pre></div>
 <p>Every complex network in ICON is provided as an edgelist stored in a data frame. Each row of the data frame corresponds to a single edge and the first two columns contain the nodes that define the edge; for directed networks, the first column will always be the source (from) and the second column will always be the sink (to). Note that since only an edgelist is provided, nodes of degree zero will not be included. Weighted (and some unweighted) networks will contain more than two columns; the additional columns represent either edge weights or other edge attributes. The <code>get_data</code> function can also download multiple datasets at once. Note that the <code>get_data</code>’s <code>envir</code> parameter can be modified to select a different environment; by default, the objects will load on the global environment (<code>.GlobalEnv</code>).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
@@ -197,22 +198,24 @@
 <span class="co">#&gt; DATASET(S) coldlake_intensity fullerene_c60 LOADED</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">coldlake_intensity</span>)
+<span class="co">#&gt; # ICON complex network: 6 edges and 1 edge attributes</span>
 <span class="co">#&gt;   Fish Parasite Intensity</span>
 <span class="co">#&gt; 1    1       V2       2.1</span>
 <span class="co">#&gt; 2    1       V5        NA</span>
 <span class="co">#&gt; 3    1       V8       1.7</span>
 <span class="co">#&gt; 4    1      V12       3.5</span>
 <span class="co">#&gt; 5    1      V16       1.7</span>
-<span class="co">#&gt; 6    1      V19       1.2</span>
+<span class="co">#&gt;     &lt;and 1 more edges&gt;</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw">fullerene_c60</span>)
+<span class="co">#&gt; # ICON complex network: 6 edges and 0 edge attributes</span>
 <span class="co">#&gt;   Node1 Node2</span>
 <span class="co">#&gt; 1     0     1</span>
 <span class="co">#&gt; 2     0     2</span>
 <span class="co">#&gt; 3     0     3</span>
 <span class="co">#&gt; 4     1     4</span>
 <span class="co">#&gt; 5     1     5</span>
-<span class="co">#&gt; 6     2    10</span>
+<span class="co">#&gt;     &lt;and 1 more edges&gt;</span>
 </pre></div>
 <p><code>get_data</code> also lends itself to a simple solution (following code chunk) to download all the networks available through ICON, however, this should be used with caution as there are a large number of them. The following chunk is not actually run in the vignette.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
