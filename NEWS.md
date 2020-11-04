@@ -3,6 +3,8 @@
 * switched from S3 generics (as.network.ICON) to conversion functions (as_network and as_igraph)
 * moved network and ggnetwork from Imports to Suggests
 * added igraph to Suggests
+* implemented `print.ICON` S3 method for `print` generic
+* added constructor, validator, helper for ICON (not exported - raise GitHub issue if it should be)
 
 ## ICON v0.4.0
 
