@@ -35,6 +35,7 @@ validate_ICON <- function(x) {
 }
 
 # helper (exported) for ICON S3 class
+# not exported b/c users shouldn't be making their own ICON objects
 ICON <- function(x) {
   # coerce to data.frame if necessary and possible
   if (!is.data.frame(x)) x <- as.data.frame(x)
@@ -42,6 +43,22 @@ ICON <- function(x) {
   validate_ICON(new_ICON(x))
 }
 
+#' Print Values in ICON complex network dataset
+#' 
+#' `print.ICON` implements an S3 method for the `base::print` generic. It
+#' includes a brief one-line summary, 5 edges in the dataset, and the number
+#' of unprinted edges.
+#' 
+#' @param x object of class `ICON` (and, as a consequence, `data.frame`)
+#' @param ... other relevant parameters
+#' @return does not return anything useful; prints `x`'s contents to console
+#' @export
+#' @examples
+#' \dontrun{
+#' get_data("aishihik_intensity")
+#' 
+#' print(aishihik_intensity)
+#' }
 # S3 generic method for print
 print.ICON <- function(x, ...) {
   # make sure x is also a data.frame
@@ -50,7 +67,13 @@ print.ICON <- function(x, ...) {
   }
   
   # print summary
-  cat("# ICON complex network:", nrow(x), "edges and", ncol(x) - 2, "edge attributes")
+  cat("# ICON complex network:", nrow(x), "edges and", ncol(x) - 2, "edge attributes\n")
   
   # print first 5 rows
+  print.data.frame(utils::head(x, n = 5))
+  
+  # output how many more are left
+  if (nrow(x) > 5) {
+    cat("    <and", nrow(x) - 5, "more edges>\n")
+  }
 }
