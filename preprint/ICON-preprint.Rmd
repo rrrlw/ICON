@@ -1,0 +1,248 @@
+---
+title: Exploring complex networks with the `ICON` R package
+authors:
+  - name: Raoul R. Wadhwa
+    department: Cleveland Clinic Lerner College of Medicine
+    affiliation: Case Western Reserve University
+    location: Cleveland, OH 44195, United States
+    email: raoul.wadhwa@case.edu
+  - name: Jacob G. Scott
+    department: Translational Hematology \& Oncology Research
+    affiliation: Lerner Research Institute, Cleveland Clinic
+    location: Cleveland, OH 44195, United States
+    email: ScottJ10@ccf.org
+abstract: |
+  We introduce `ICON`, an R package that contains `r nrow(ICON::ICON_data)` complex network datasets in a standard edgelist format.
+  All provided datasets have associated citations and have been indexed by the Colorado Index of Complex Networks - also referred to as ICON.
+  In addition to supplying a large and diverse corpus of useful real-world networks, `ICON` also implements conversion functions to work with the `network`, `ggnetwork`, and `igraph` R packages for network analysis and visualization.
+  Currently, the Comprehensive R Archive Network hosts `ICON` v$0.4.0$.
+  We hope that `ICON` will serve as a standard corpus for complex network research and prevent redundant work that would be otherwise necessary by individual research groups.
+  The open source code for `ICON` and for this reproducible report can be found at \url{https://github.com/rrrlw/ICON}.
+keywords:
+  - complex networks
+  - R programming language
+bibliography: ICONrefs.bib
+nocite: |
+  @rpkg-book
+csl: num_style.csl
+output: rticles::arxiv_article
+---
+
+# Introduction
+
+Empirical study of complex networks requires real-world data to validate theoretical results.
+A large, diverse corpus of networks often proves useful given the many shapes and sizes that complex networks assume.[@corpus1;@corpus2]
+To our knowledge, the [Colorado Index of Complex Networks (ICON)](https://icon.colorado.edu) hosts the largest curated index of real-world complex networks, with metadata and links to over 5,000 networks as of this writing.[@icon]
+However, heterogeneity in data format, access, and availability limit how easily users can take advantage of this incredible resource.
+A central repository containing a large corpus of ICON-indexed networks in standard format would thus provide a useful service for network science researchers, who would avoid the tedious task of data format conversion prior to analysis.
+Here, we introduce the `ICON` R package as such a solution, providing a large and diverse corpus of real-world networks and tools to work with existing network analysis and visualization R packages.
+
+# Implementation details
+
+\texttt{ICON} v$0.4.0$ is a package for the R programming language hosted on the Comprehensive R Archive Network (CRAN).[@rlang]
+It strongly depends on the `utils` ($\geq 3.6$) R package and weakly depends on the `covr` ($\geq 3.5$), `ggnetwork` ($\geq 0.5$), `ggplot2` ($\geq 3.3$), `igraph` ($\geq 1.2$), `knitr` ($\geq 1.30$), `network` ($\geq 1.16$), `testthat` ($\geq 2.3$), and `rmarkdown` ($\geq 2.4$) R packages.[@rlang;@covr-pkg;@ggnetwork-pkg;@ggplot2-pkg;@igraph-pkg;@knitr-pkg;@network-pkg;@testthat-pkg;@rmarkdown-pkg]
+Throughout the development process, the `devtools` R package was heavily used.[@devtools-pkg]
+This report is fully reproducible with code (GPL-3 license) available at \url{https://github.com/rrrlw/ICON}.
+Full reproduction will require installation of the strong and weak dependencies listed above.
+
+## Installation
+
+The stable version of `ICON` (currently v$0.4.0$) can be downloaded from CRAN, while the development version can be downloaded from the package's [GitHub repository](https://github.com/rrrlw/ICON) using the `remotes` package.[@remotes-pkg]
+Both options are demonstrated in the following code chunk.
+
+```{r install, eval=FALSE}
+# install stable version from CRAN
+install.packages("ICON")
+
+# install development version from GitHub
+remotes::install_github("rrrlw/ICON", build_vignettes = TRUE)
+```
+
+## Complex network datasets
+
+```{r calc-prep, echo=FALSE, message=FALSE, results='hide'}
+library("ICON")
+data("ICON_data")
+
+largest_row <- which(ICON_data$Edges == max(ICON_data$Edges))
+```
+
+Currently, `ICON` provides `r nrow(ICON::ICON_data)` complex network edge lists.
+The largest network, named ``r ICON_data$Var_name[largest_row]``, consists of `r ICON_data$Edges[largest_row]` edges.
+Due to the large volume of data and CRAN package size limits, all of `ICON`'s networks cannot be downloaded to a local machine upon installation and loaded with `utils::data`.
+Instead, the package's GitHub repository contains a directory named `data-host`, which `ICON::get_data` accesses to download networks named by the user.
+After successful download, `ICON::get_data` loads these networks into the user's environment of choice (default: `.GlobalEnv`) and cleans any intermediate artifacts.
+To avoid dependence on an internet connection, users can save and access individual networks in RDS format (binary; `.rds` extension; via `base::saveRDS` and `base::readRDS`) or do the same for a set of networks in RData/RDa format (binary; `.RData` or `.rda` extension; via `base::save` and `base::load`).
+An obvious deficiency of this system is the inability to take advantage of automated data documentation and checking tools, such as `roxygen2`.[@roxygen2-pkg]
+However, the `ICON::ICON_data` dataset provides the necessary documentation for `ICON` users and implements a sufficient and slightly soporific checking system for the package authors.
+
+Although providing standardized data format avoids redundant work, an important processing step being completed by a single party (package authors) opens the door to inaccuracies.
+It befits us to simply counter this limitation with `ICON`'s status as free, open-source software (FOSS), which offers every user the opportunity to inspect, question, and correct all aspects of `ICON`.
+The `data-raw` directory in `ICON`'s GitHub repository follows Wickham's (2015) advice and contains: (1) the original raw data acquired directly from the source indexed by the ICON website; (2) the R code that converts each raw dataset into a data frame comprised of an edge list and potential edge attributes; and (3) the R code saving the resulting data frame as an RDA file in the aforementioned `data-host` directory.
+We hope that this not only offers, but indeed encourages, `ICON` users to confirm dataset accuracy.
+
+Note that to minimize unnecessary package elements, `ICON`'s `.Rbuildignore` contains `data-host` and `data-raw`.
+However, for reproducibility and documentation, `ICON`'s GitHub repository provides public access to both directories.
+
+We will now look at sample code to acquire complex network datasets using `ICON`.
+To do so, we must load the library in the R session and load the `ICON_data` dataset, which contains relevant complex network metadata.
+The metadata can be explored in the package documentation with `?ICON_data`; in this report, we will focus only on the essentials, starting with the following code chunk.
+
+```{r sample-load}
+# load library
+library("ICON")
+
+# load metadata
+# explore this data frame to figure out which networks suit your needs
+data("ICON_data")
+
+# peek at the first few and last few packages available to download
+head(ICON_data$Var_name, n = 3)
+
+tail(ICON_data$Var_name, n = 3)
+```
+
+We first try downloading a single dataset with `ICON::get_data` and peeking at its contents.
+Once this succeeds, we confidently download multiple datasets.
+
+```{r sample}
+# download single dataset named in previous code chunk output
+# could also use `get_data(ICON_data$Var_name[1])` to same effect
+get_data("aishihik_intensity")
+
+# look at the structure of the complex network
+str(aishihik_intensity)
+
+# confirm that metadata reflects the correct number of edges
+(ICON_data$Edges[1] == nrow(aishihik_intensity))
+
+# look at the first few rows; for all ICON datasets:
+#   columns 1 and 2 = nodes that define the edge
+#   columns 3 and beyond = edge attributes (e.g. weight)
+head(aishihik_intensity)
+
+# download multiple datasets
+get_data(c("wordadj_japanese", "wordadj_french"))
+
+# confirm downloads by looking at internal structure
+str(wordadj_japanese)
+
+str(wordadj_french)
+```
+
+A keen reader might observe that all of `ICON`'s datasets could be downloaded with `get_data(ICON_data$Var_name)`; due to the potential runtime and memory commitment, we strongly recommend that users exercise caution if attempting this.
+
+## The `ICON` S3 class
+
+Looking at the structure of the complex networks with `utils::str` shows that `ICON` complex networks all have two classes: `ICON` and `data.frame`.
+The latter provides a suitable container for edge list objects with potential edge attributes in rectangular format.
+The former, an S3 class, benefits users by providing certain guarantees about object format, i.e., an unmodified complex network object acquired via the `ICON` package will have the `ICON` S3 class and is guaranteed to be a data frame containing an edge list in which each row represents a single edge, the first two columns specify nodes that define the corresponding edge, and additional columns define edge attributes.
+This standard format guarantee allows users, among other things, to generate code for one `ICON` dataset with assurances that it will function effectively for other `ICON` datasets.
+The S3 class will also allow users to take advantage of relevant S3 generic methods.
+In future `ICON` versions, we aim to implement methods for common generics, e.g. `base::plot`.
+
+# Use cases
+
+Before starting with the use cases, the following code chunk will load the appropriate libraries and download the sample dataset.
+
+```{r use-setup,message=FALSE}
+# load necessary libraries
+library("ICON")
+library("network")
+library("ggnetwork")
+library("ggplot2")
+library("igraph")
+
+# for reproducibility
+set.seed(42)
+
+# download sample dataset
+get_data("seed_disperse_beehler")
+```
+
+A quick exploration of `seed_disperse_beehler` will grant a deeper understanding of the use cases.
+Primarily, we would like to explore the third column - named `Frequency`.
+Due to the heavy skew, we will use two consecutive logarithmic transformations to more easily see the effects of coloring edges by the `Frequency` edge attribute.
+The following code chunk produces histograms of `seed_disperse_beehler$Frequency` before and after this transformation for comparison.
+
+```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=3.4, fig.height=2}
+# plot a histogram w/o transformation (skewed, tough to see differences)
+ggplot(seed_disperse_beehler, aes(x = Frequency)) +
+  geom_histogram(bins = 10, fill = "white", color = "black") +
+  theme_bw()
+
+# plot a histogram w/ transformation (more spread out, differences easily seen)
+ggplot(seed_disperse_beehler, aes(x = log(log(Frequency)))) +
+  geom_histogram(bins = 10, fill = "white", color = "black") +
+  theme_bw()
+```
+
+## With the `network` R package {#networkusecase}
+
+Using the `seed_disperse_beehler` sample dataset, we first convert it to a `network` object with `as_network`.
+This allows us to take advantage of the large set of tools already built in the [Statnet suite](http://www.statnet.org) of R packages, specifically the [network](https://CRAN.R-project.org/package=network) package.
+Although we first use [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) to rapidly visualize the nodes and edges, we also show how to visualize edge attributes toward the end of the code chunk.
+
+```{r network-case,message=FALSE,fig.width=6.75,fig.height=4}
+# convert using ICON function
+converted <- as_network(seed_disperse_beehler)
+
+# plot with ggnetwork
+ggplot(converted, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges(alpha = 0.25) +
+  geom_nodes() +
+  theme_blank()
+
+# are there any edge attributes in `seed_disperse_beehler`?
+#   YES, we have the "Frequency" edge attribute (see third column name)
+str(seed_disperse_beehler)
+
+# is this edge attribute also present in the converted network?
+#   YES, let's plot it in the next network visualization (see end of output)
+print(converted)
+
+# plot with log(log(Frequency)) as an edge attribute (edge color)
+ggplot(converted, aes(x = x, y = y, xend = xend, yend = yend)) +
+  geom_edges(aes(color = log(log(Frequency)))) +
+  geom_nodes() +
+  theme_blank()
+```
+
+Of course, even with the edge attribute, we are only scraping the surface of the visualization capability provided.
+More details can be found in the documentation of the appropriate packages.
+
+## With the `igraph` R package {#igraphusecase}
+
+Using the `seed_disperse_beehler` sample dataset, we first convert it to an `igraph` object with `as_igraph`.
+This allows us to take advantage of the large set of tools already built in the [igraph library](https://igraph.org).
+The [igraph R package](https://CRAN.R-project.org/package=igraph) allows us to analyze complex networks with built-in functions and visualize them with the `igraph::plot.igraph` method for the `base::plot` S3 generic.
+
+```{r igraph-case,message=FALSE,fig.width=6.75,fig.height=4}
+# convert using ICON function
+converted <- as_igraph(seed_disperse_beehler)
+
+# look at edges in converted network
+E(converted)
+
+# peek at edge weights
+head(E(converted)$weight)
+
+# visualize with igraph::plot.igraph generic
+plot(converted,
+     vertex.label = NA, vertex.size = 5)
+```
+
+As was the case with the previous use case, we have only scratched the surface of visualization possibilities.
+More details can be found in the `igraph` package documentation.
+
+# Discussion/Conclusions
+
+We have introduced the `ICON` R package, explained its potential use as a network corpus, and demonstrated its compatibility with existing complex network software.
+With time, we hope that `ICON`'s corpus will grow and encourage users to contribute complex network datasets by following steps in the package's [contributing guidelines](https://github.com/rrrlw/ICON/blob/master/CONTRIBUTING.md) and adhering to the [code of conduct](https://github.com/rrrlw/ICON/blob/master/CONTRIBUTING.md),[@covenant] both of which can be found on the package's GitHub repository.
+More details about the `ICON` R package can be found at the package website (https://rrrlw.github.io/ICON/), GitHub repository (https://github.com/rrrlw/ICON), and CRAN page (https://CRAN.R-project.org/package=ICON).
+
+# Acknowledgments
+
+The authors thank Aaron Clauset, PhD and the members of his research group at the University of Colorado Boulder for advice and for their tireless efforts in creating the Colorado Index of Complex Networks.
+
+# References

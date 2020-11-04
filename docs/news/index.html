@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ICON</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.1</span>
       </span>
     </div>
 
@@ -126,21 +126,34 @@
       <small>Source: <a href='https://github.com/rrrlw/ICON/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="icon-v040" class="section level2">
+    <div id="icon-v0-4-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#icon-v040" class="anchor"></a>ICON v0.4.0</h2>
+<a href="#icon-v0-4-1" class="anchor"></a>ICON v0.4.1</h2>
+<ul>
+<li>switched from S3 generics (as.network.ICON) to conversion functions (as_network and as_igraph)</li>
+<li>moved network and ggnetwork from Imports to Suggests</li>
+<li>added igraph to Suggests</li>
+<li>implemented <code>print.ICON</code> S3 method for <code>print</code> generic</li>
+<li>added constructor, validator, helper for ICON (not exported - raise GitHub issue if it should be)</li>
+</ul>
+</div>
+    <div id="icon-v0-4-0" class="section level2">
+<h2 class="hasAnchor">
+<a href="#icon-v0-4-0" class="anchor"></a>ICON v0.4.0</h2>
 <ul>
 <li>Implemented S3 generic: method = network::as.network; class = ICON</li>
 <li>Added basic unit testing.</li>
+<li>Added code coverage using codecov</li>
+<li>Additional column of metadata in <code>ICON_data</code> named “Domain” represents network domain/discipline</li>
 </ul>
 <p>Added following datasets:</p>
 <ul>
 <li>procure_* (234 datasets for various EU countries and years)</li>
 </ul>
 </div>
-    <div id="icon-v030" class="section level2">
+    <div id="icon-v0-3-0" class="section level2">
 <h2 class="hasAnchor">
-<a href="#icon-v030" class="anchor"></a>ICON v0.3.0</h2>
+<a href="#icon-v0-3-0" class="anchor"></a>ICON v0.3.0</h2>
 <p>Added following datasets:</p>
 <ul>
 <li>arxiv_astroph</li>
@@ -171,9 +184,9 @@
 <li>wordadj_japanese</li>
 </ul>
 </div>
-    <div id="icon-v020" class="section level2">
+    <div id="icon-v0-2-0" class="section level2">
 <h2 class="hasAnchor">
-<a href="#icon-v020" class="anchor"></a>ICON v0.2.0</h2>
+<a href="#icon-v0-2-0" class="anchor"></a>ICON v0.2.0</h2>
 <p>Major change: none of the datasets are stored locally and loaded with the data function. Instead, all datasets are now stored on a GitHub repo and downloaded/loaded with the <code>get_data</code> function provided in the ICON package. Additionally, the ICON_data dataset can be used to find information on the datasets themselves. This change allows the package to provide datasets larger than the 5 MB limit posed by CRAN.</p>
 <p>Added following datasets:</p>
 <ul>
@@ -223,9 +236,9 @@
 <li>yeast_ppi -&gt; ppi_yeast</li>
 </ul>
 </div>
-    <div id="icon-v010" class="section level2">
+    <div id="icon-v0-1-0" class="section level2">
 <h2 class="hasAnchor">
-<a href="#icon-v010" class="anchor"></a>ICON v0.1.0</h2>
+<a href="#icon-v0-1-0" class="anchor"></a>ICON v0.1.0</h2>
 <p>Added initial set of networks from ICON:</p>
 <ul>
 <li>chess</li>
@@ -250,7 +263,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

@@ -1,0 +1,4 @@
+# rmarkdown intermediate files
+*.pdf
+*.tex
+^ICON-preprint_files$
