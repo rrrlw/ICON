@@ -24,12 +24,6 @@ validate_ICON <- function(x) {
                "a valid complex network, passed object has", nrow(x),
                "rows"))
   }
-  
-  # no missing values
-  if (!all(stats::complete.cases(x))) {
-    stop(paste("ICON objects cannot have missing values, passed object",
-               "has", sum(!stats::complete.cases(x)), "missing values"))
-  }
     
   x
 }
