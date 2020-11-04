@@ -12,14 +12,15 @@ authors:
     location: Cleveland, OH 44195, United States
     email: ScottJ10@ccf.org
 abstract: |
-  We introduce `ICON`, an R package that contains `r nrow(ICON::ICON_data)` complex network datasets in a standard edgelist format.
-  All provided datasets have associated citations and have been indexed by the Colorado Index of Complex Networks - also referred to as ICON.
+  We introduce `ICON`, an R package that contains `r nrow(ICON::ICON_data)` complex network datasets in a standard edge list format.
+  All provided datasets have associated citations and have been indexed by the Colorado Index of Complex Networks, or ICON for short.
   In addition to supplying a large and diverse corpus of useful real-world networks, `ICON` also implements conversion functions to work with the `network`, `ggnetwork`, and `igraph` R packages for network analysis and visualization.
   Currently, the Comprehensive R Archive Network hosts `ICON` v$0.4.0$.
   We hope that `ICON` will serve as a standard corpus for complex network research and prevent redundant work that would be otherwise necessary by individual research groups.
   The open source code for `ICON` and for this reproducible report can be found at \url{https://github.com/rrrlw/ICON}.
 keywords:
   - complex networks
+  - R data package
   - R programming language
 bibliography: ICONrefs.bib
 nocite: |
@@ -34,7 +35,7 @@ Empirical study of complex networks requires real-world data to validate theoret
 A large, diverse corpus of networks often proves useful given the many shapes and sizes that complex networks assume.[@corpus1;@corpus2]
 To our knowledge, the [Colorado Index of Complex Networks (ICON)](https://icon.colorado.edu) hosts the largest curated index of real-world complex networks, with metadata and links to over 5,000 networks as of this writing.[@icon]
 However, heterogeneity in data format, access, and availability limit how easily users can take advantage of this incredible resource.
-A central repository containing a large corpus of ICON-indexed networks in standard format would thus provide a useful service for network science researchers, who would avoid the tedious task of data format conversion prior to analysis.
+A central repository containing a large corpus of ICON-indexed networks in standard format would thus provide a useful service for network science researchers, who could avoid the tedious task of data format conversion prior to analysis.
 Here, we introduce the `ICON` R package as such a solution, providing a large and diverse corpus of real-world networks and tools to work with existing network analysis and visualization R packages.
 
 # Implementation details
@@ -150,6 +151,7 @@ library("ICON")
 library("network")
 library("ggnetwork")
 library("ggplot2")
+library("gridExtra")
 library("igraph")
 
 # for reproducibility
@@ -170,16 +172,18 @@ Primarily, we would like to explore the third column - named `Frequency`.
 Due to the heavy skew, we will use two consecutive logarithmic transformations to more easily see the effects of coloring edges by the `Frequency` edge attribute.
 The following code chunk produces histograms of `seed_disperse_beehler$Frequency` before and after this transformation for comparison.
 
-```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=6, fig.height=3}
+```{r seed_explore,warning=FALSE,fig.show='hold', fig.width=4.5, fig.height=2.5}
 # plot a histogram w/o transformation (skewed, tough to see differences)
-ggplot(seed_disperse_beehler, aes(x = Frequency)) +
+g1 <- ggplot(seed_disperse_beehler, aes(x = Frequency)) +
   geom_histogram(bins = 10, fill = "white", color = "black") +
   theme_bw()
 
 # plot a histogram w/ transformation (more spread out, differences easily seen)
-ggplot(seed_disperse_beehler, aes(x = log(log(Frequency)))) +
+g2 <- ggplot(seed_disperse_beehler, aes(x = log(log(Frequency)))) +
   geom_histogram(bins = 10, fill = "white", color = "black") +
   theme_bw()
+
+grid.arrange(g1, g2, nrow = 2)
 ```
 
 ## With the `network` R package {#networkusecase}
@@ -188,7 +192,7 @@ Using the `seed_disperse_beehler` sample dataset, we first convert it to a `netw
 This allows us to take advantage of the large set of tools already built in the [Statnet suite](http://www.statnet.org) of R packages, specifically the [network](https://CRAN.R-project.org/package=network) package.
 Although we first use [ggnetwork](https://CRAN.R-project.org/package=ggnetwork) to rapidly visualize the nodes and edges, we also show how to visualize edge attributes toward the end of the code chunk.
 
-```{r network-case,message=FALSE,fig.width=6.75,fig.height=4}
+```{r network-case,message=FALSE,fig.width=4.5,fig.height=2.5}
 # convert using ICON function
 converted <- as_network(seed_disperse_beehler)
 
