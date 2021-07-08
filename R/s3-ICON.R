@@ -46,6 +46,7 @@ ICON <- function(x) {
 #' @param x object of class `ICON` (and, as a consequence, `data.frame`)
 #' @param ... other relevant parameters
 #' @return does not return anything useful; prints `x`'s contents to console
+#' @export print.ICON
 #' @export
 #' @examples
 #' \dontrun{
